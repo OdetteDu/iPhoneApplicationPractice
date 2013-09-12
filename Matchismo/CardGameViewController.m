@@ -25,7 +25,7 @@
 -(CardMatchingGame *)game
 {
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                         usingDeck:[[PlayingCardDeck alloc] init]];
+                                                          usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
 }
 
@@ -46,15 +46,12 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = (card.isUnplayable ? 0.3 :1.0);
         
-        if(card.isFaceUp)
-        {
-            [cardButton setBackgroundImage:nil forState: UIControlStateNormal];
-        }
-        else
-        {
-            UIImage *cardBackImage = [UIImage imageNamed:@"bg.jpg"];
-            [cardButton setBackgroundImage:cardBackImage forState: UIControlStateNormal];
-        }
+        
+        cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        UIImage *cardBackImage = [UIImage imageNamed:@"bg.jpg"];
+        [cardButton setBackgroundImage: (cardButton.selected)? nil:cardBackImage forState: UIControlStateNormal];
+        
+        
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
