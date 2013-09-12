@@ -48,7 +48,7 @@
         
         
         cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        UIImage *cardBackImage = [UIImage imageNamed:@"bg.jpg"];
+        UIImage *cardBackImage = [UIImage imageNamed:@"bg.png"];
         [cardButton setBackgroundImage: (cardButton.selected)? nil:cardBackImage forState: UIControlStateNormal];
         
         
