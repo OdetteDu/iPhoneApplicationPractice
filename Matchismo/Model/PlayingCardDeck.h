@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Deck.h"
 
-@interface PlayingCardDeck : NSObject
+@interface PlayingCardDeck : Deck
 
 @end

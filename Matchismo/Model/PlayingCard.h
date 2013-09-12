@@ -6,8 +6,14 @@
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Card.h"
 
-@interface PlayingCard : NSObject
+@interface PlayingCard : Card
+
+@property (strong,nonatomic) NSString *suit;
+@property (nonatomic) NSUInteger rank;
+
++(NSArray *)validSuits;
++(NSUInteger)maxRank;
 
 @end
