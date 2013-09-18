@@ -8,16 +8,10 @@
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
-#import "CardMatchingGame.h"
+
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *switcher;
+
 @end
 
 @implementation CardGameViewController
@@ -64,7 +58,6 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-    self.switcher.enabled=NO;
     NSString *description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.descriptionLabel.text = description;
     self.flipCount++;
@@ -74,26 +67,10 @@
 - (IBAction)deal:(UIButton *)sender
 {
     self.flipCount=0;
-    self.game=[[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                usingDeck:[[PlayingCardDeck alloc] init]];
+    self.game=nil;
     self.descriptionLabel.text = [NSString stringWithFormat:@"Start a new game."];
-    self.switcher.enabled=YES;
     [self updateUI];
     
-}
-
-- (IBAction)switchMode:(UISwitch *)sender
-{
-    if(sender.on)
-    {
-        self.game.useThreeCard=YES;
-        self.descriptionLabel.text = [NSString stringWithFormat:@"Switch to Three Card Match Mode."];
-    }
-    else
-    {
-        self.game.useThreeCard=NO;
-        self.descriptionLabel.text = [NSString stringWithFormat:@"Switch to Two Card Match Mode."];
-    }
 }
 
 @end
