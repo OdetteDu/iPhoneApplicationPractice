@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "GameResult.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -18,9 +19,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *switcher;
+@property (strong, nonatomic) GameResult *gameResult;
 @end
 
 @implementation CardGameViewController
+
+-(GameResult *) gameResult
+{
+    if(!_gameResult) _gameResult = [[GameResult alloc] init];
+    return _gameResult;
+}
 
 -(CardMatchingGame *)game
 {
@@ -60,6 +68,7 @@
 {
     _flipCount = flipCount;
     self.flipsLabel.text=[NSString stringWithFormat:@"Flips: %d", self.flipCount];
+    self.gameResult.score=self.game.score;
 }
 
 - (IBAction)flipCard:(UIButton *)sender
@@ -73,9 +82,9 @@
 
 - (IBAction)deal:(UIButton *)sender
 {
+    self.game=nil;
+    self.gameResult=nil;
     self.flipCount=0;
-    self.game=[[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                usingDeck:[[PlayingCardDeck alloc] init]];
     self.descriptionLabel.text = [NSString stringWithFormat:@"Start a new game."];
     self.switcher.enabled=YES;
     [self updateUI];
