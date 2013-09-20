@@ -11,6 +11,8 @@
 @interface CardMatchingGame()
 @property (readwrite, nonatomic) int score;
 @property (strong, nonatomic) NSMutableArray *cards; //of Card
+@property (nonatomic) BOOL shouldCleanActiveCards;
+@property (strong, nonatomic) Card *facedupCard;
 @end
 
 @implementation CardMatchingGame
@@ -36,7 +38,20 @@
 
 -(NSString *)flipCardAtIndex:(NSUInteger)index
 {
+    if(self.shouldCleanActiveCards==YES)
+    {
+        self.activeCards=nil;
+        if(self.facedupCard)
+        {
+            [self.activeCards addObject:self.facedupCard];
+        }
+        self.facedupCard=nil;
+        self.shouldCleanActiveCards=NO;
+    }
+    
     NSString *description;
+    
+  
     
     Card *card = [self cardAtIndex:index];
     
@@ -61,15 +76,17 @@
                             otherCard.unplayable = YES;
                             self.score += matchScore *MATCH_BONUS;
                             description=[NSString stringWithFormat:@"Matched %@ & %@ for %d points",card.contents, otherCard.contents, matchScore*MATCH_BONUS];
+                            self.shouldCleanActiveCards=YES;
                         }
                         else
                         {
                             otherCard.faceUp = NO;
                             self.score -= MISMATCH_PENALTY;
                             description=[NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",card.contents, otherCard.contents, MISMATCH_PENALTY];
-                            
+                            self.shouldCleanActiveCards=YES;
+                            self.facedupCard=card;
                         }
-                        self.activeCards=nil;
+                        //self.activeCards=nil;
                         break;
                     }
                 }
@@ -98,7 +115,9 @@
                         self.score += matchScore * MATCH_BONUS;
                         Card *otherCard1=[otherCards objectAtIndex:0];
                         Card *otherCard2=[otherCards objectAtIndex:1];
-                        description=[NSString stringWithFormat:@"Matched %@, %@ & %@ for %d points", card.contents, otherCard1.contents, otherCard2.contents, matchScore*MATCH_BONUS];
+                        description=[NSString stringWithFormat:@"Matched %@, %@ & %@ for %d points",  otherCard1.contents, otherCard2.contents, card.contents,matchScore*MATCH_BONUS];
+                        self.shouldCleanActiveCards=YES;
+                        
                     }
                     else
                     {
@@ -109,9 +128,11 @@
                         self.score -= MISMATCH_PENALTY;
                         Card *otherCard1=[otherCards objectAtIndex:0];
                         Card *otherCard2=[otherCards objectAtIndex:1];
-                        description=[NSString stringWithFormat:@"%@, %@ & %@ don't match. %d point penalty", card.contents, otherCard1.contents, otherCard2.contents, MISMATCH_PENALTY];
+                        description=[NSString stringWithFormat:@"%@, %@ & %@ don't match. %d point penalty",  otherCard1.contents, otherCard2.contents, card.contents,MISMATCH_PENALTY];
+                        self.shouldCleanActiveCards=YES;
+                        self.facedupCard=card;
                     }
-                    self.activeCards=nil;
+                    //self.activeCards=nil;
                 }
                 else
                 {
@@ -119,6 +140,8 @@
                 }
             }
             self.score -= FLIP_COST;
+            
+            
             [self.activeCards addObject:card];
         }
         else

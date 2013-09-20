@@ -73,6 +73,30 @@
             
         }
     }
+    
+    NSMutableAttributedString *coloredDescription=[[NSMutableAttributedString alloc] initWithString:self.description];
+    NSRange range={NSNotFound,NSNotFound};
+    for(ShapeCard *sc in self.game.activeCards)
+    {
+        if(range.location!=NSNotFound)
+        {
+            NSUInteger x=range.location+range.length;
+            NSRange temp={x, self.description.length-x};
+            range=[self.description rangeOfString:sc.contents options:0 range: temp];
+        }
+        else
+        {
+            range=[self.description rangeOfString:sc.contents];
+        }
+        
+        if(range.location!=NSNotFound)
+        {
+            [coloredDescription addAttributes:@{NSForegroundColorAttributeName:[self getColor:sc.color]} range:range];
+        }
+    }
+    
+    [self.descriptionLabel setAttributedText:coloredDescription];
+    
     [super updateUI];
 }
 
