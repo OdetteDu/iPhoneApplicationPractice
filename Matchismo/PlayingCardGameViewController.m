@@ -39,10 +39,17 @@
         cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         UIImage *cardBackImage = [UIImage imageNamed:@"bg.png"];
         [cardButton setBackgroundImage: (cardButton.selected)? nil:cardBackImage forState: UIControlStateNormal];
-        
+        self.descriptionLabel.text = self.description;
         
     }
     [super updateUI];
+}
+
+- (IBAction)flipCard:(UIButton *)sender
+{
+    self.description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    
+    [super flipCard:sender];
 }
 
 @end

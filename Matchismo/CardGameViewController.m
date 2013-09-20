@@ -16,16 +16,19 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @end
 
 @implementation CardGameViewController
 
-//-(CardMatchingGame *)game
-//{
-//    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init]];
-//    return _game;
-//}
+-(NSString *)description
+{
+    if(!_description)
+    {
+        _description=@"";
+    }
+    return _description;
+}
 
 -(void)setCardButtons:(NSArray *)cardButtons
 {
@@ -35,22 +38,6 @@
 
 -(void)updateUI
 {
-    //for(UIButton *cardButton in self.cardButtons)
-    //{
-    //    Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-     //   [cardButton setTitle:card.contents forState:UIControlStateSelected];
-    //    [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-    //    cardButton.selected = card.isFaceUp;
-    //    cardButton.enabled = !card.isUnplayable;
-     //   cardButton.alpha = (card.isUnplayable ? 0.3 :1.0);
-        
-        
-     //   cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-     //   UIImage *cardBackImage = [UIImage imageNamed:@"bg.png"];
-     //   [cardButton setBackgroundImage: (cardButton.selected)? nil:cardBackImage forState: UIControlStateNormal];
-        
-    
-   // }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
 
@@ -62,8 +49,8 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-    NSString *description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.descriptionLabel.text = description;
+    //NSString *description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    //self.descriptionLabel.text = description;
     self.flipCount++;
     [self updateUI];
 }

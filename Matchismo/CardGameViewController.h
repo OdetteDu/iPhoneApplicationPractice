@@ -12,6 +12,9 @@
 @interface CardGameViewController : UIViewController
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) NSString *description;
 
 -(void)updateUI;
+- (IBAction)flipCard:(UIButton *)sender;
 @end
