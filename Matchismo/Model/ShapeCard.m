@@ -19,6 +19,11 @@
     return @[@"Green", @"Blue", @"Red"];
 }
 
++(NSArray *)validShadings
+{
+    return @[@"Empty", @"Fill", @"Stripe"];
+}
+
 +(NSUInteger)maxCount
 {
     return 3;
@@ -35,7 +40,10 @@
     
     contents=[contents stringByAppendingString:@" Color: "];
     contents=[contents stringByAppendingString:self.color];
+    contents=[contents stringByAppendingString:@" Shadings: "];
+    contents=[contents stringByAppendingString:self.shading];
     
+    NSLog(contents);
     return contents;
 }
 
@@ -48,18 +56,53 @@
         ShapeCard *otherCard1 = [otherCards objectAtIndex:0];
         ShapeCard *otherCard2 = [otherCards objectAtIndex:1];
         
-        if(otherCard1.count == self.count && otherCard2.count == self.count)
+        if((otherCard1.count == self.count || otherCard2.count == self.count || otherCard1.count == otherCard2.count))
         {
-            return 4;
+            if(self.count==otherCard1.count && self.count==otherCard2.count)
+            {
+                score=4;
+            }
+            else
+            {
+                return 0;
+            }
         }
-        else if([otherCard1.shape isEqualToString: self.shape] && [otherCard2.shape isEqualToString: self.shape])
+        
+        if([otherCard1.shape isEqualToString: self.shape] || [otherCard2.shape isEqualToString: self.shape] || [otherCard1.shape isEqualToString: otherCard2.shape])
         {
-            return 4;
+            if([otherCard1.shape isEqualToString: self.shape]&&[otherCard2.shape isEqualToString: self.shape])
+            {
+                score=4;
+            }
+            else
+            {
+                return 0;
+            }
         }
-        else if([otherCard1.color isEqualToString: self.color] && [otherCard2.color isEqualToString: self.color])
+        
+        if([otherCard1.color isEqualToString: self.color] || [otherCard2.color isEqualToString: self.color] || [otherCard1.color isEqualToString: otherCard2.color])
         {
-            return 4;
+            if([otherCard1.color isEqualToString: self.color] && [otherCard2.color isEqualToString: self.color])
+            {
+                score=4;
+            }
+            else
+            {
+                return 0;
+            }
         }
+        
+        if([otherCard1.shading isEqualToString: self.shading] || [otherCard2.shading isEqualToString: self.shading] || [otherCard1.shading isEqualToString: otherCard2.shading])
+        {
+            if([otherCard1.shading isEqualToString: self.shading] && [otherCard2.shading isEqualToString: self.shading] )
+            {
+                score=4;
+            }
+            else{
+                return 0;
+            }
+        }
+        
     }
     
     return score;

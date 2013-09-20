@@ -13,9 +13,11 @@
 @property (nonatomic) NSUInteger count;
 @property (strong, nonatomic) NSString *shape;
 @property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) NSString *shading;
 
 +(NSArray *)validShapes;
 +(NSArray *)validColors;
++(NSArray *)validShadings;
 +(NSUInteger)maxCount;
 
 @end

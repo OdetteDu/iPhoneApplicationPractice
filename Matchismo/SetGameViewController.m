@@ -19,6 +19,7 @@
 -(CardMatchingGame *)game
 {
     if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[ShapeCardDeck alloc] init]];
+    self.game.useThreeCard=YES;
     return super.game;
 }
 
@@ -60,7 +61,20 @@
             NSMutableAttributedString *coloredCardContents=[[NSMutableAttributedString alloc] initWithString:cardContents];
             
             
-            [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[cardContents rangeOfString: cardContents]];
+            
+            
+            if([shapeCard.shading compare:@"Empty"]==0)
+            {
+                [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor],NSStrokeColorAttributeName: [self getColor: shapeCard.color], NSStrokeWidthAttributeName: @-5} range:[cardContents rangeOfString: cardContents]];
+            }
+            else if([shapeCard.shading compare:@"Stripe"]==0)
+            {
+                [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [UIColor grayColor],NSStrokeColorAttributeName: [self getColor: shapeCard.color],NSStrokeWidthAttributeName: @-5} range:[cardContents rangeOfString: cardContents]];
+            }
+            else if([shapeCard.shading compare:@"Fill"]==0)
+            {
+                [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[cardContents rangeOfString: cardContents]];
+            }
             
             cardButton.selected = card.isFaceUp;
             if(card.isFaceUp)
@@ -82,7 +96,7 @@
     }
     
     
-       
+    
     [super updateUI];
 }
 
@@ -109,7 +123,23 @@
             {
                 r=[[coloredDescription mutableString] rangeOfString:temp[i-2]];
             }
-            [coloredDescription addAttributes: @{NSForegroundColorAttributeName: color} range: r];
+            
+            i+=2;
+            s=temp[i];
+            
+            if([s compare:@"Empty"]==0)
+            {
+                [coloredDescription addAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor],NSStrokeColorAttributeName: color, NSStrokeWidthAttributeName: @-5} range:r];
+            }
+            else if([s compare:@"Stripe"]==0)
+            {
+                [coloredDescription addAttributes: @{NSForegroundColorAttributeName: [UIColor grayColor],NSStrokeColorAttributeName: color,NSStrokeWidthAttributeName: @-5} range:r];
+            }
+            else if([s compare:@"Fill"]==0)
+            {
+                [coloredDescription addAttributes: @{NSForegroundColorAttributeName: color} range:r];
+            }
+            //[coloredDescription addAttributes: @{NSForegroundColorAttributeName: color} range: r];
         }
         else
         {
@@ -119,11 +149,6 @@
     }
     
     return coloredDescription;
-}
-
--(void)viewDidLoad
-{
-    self.game.useThreeCard=YES;
 }
 
 - (IBAction)flipCard:(UIButton *)sender
