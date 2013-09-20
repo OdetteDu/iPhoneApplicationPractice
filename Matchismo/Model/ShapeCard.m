@@ -33,8 +33,8 @@
         contents=[contents stringByAppendingString: self.shape];
     }
     
-    [contents stringByAppendingString:@" Color: %@"];
-    [contents stringByAppendingString:self.color];
+    contents=[contents stringByAppendingString:@" Color: "];
+    contents=[contents stringByAppendingString:self.color];
     
     return contents;
 }

@@ -96,7 +96,7 @@
                         self.score += matchScore * MATCH_BONUS;
                         Card *otherCard1=[otherCards objectAtIndex:0];
                         Card *otherCard2=[otherCards objectAtIndex:1];
-                        description=[NSString stringWithFormat:@"Matched %@, %@ & %@ for %d points",  otherCard1.contents, otherCard2.contents, card.contents,matchScore*MATCH_BONUS];
+                        description=[NSString stringWithFormat:@"%@ %@ & %@ matched for %d points",  otherCard1.contents, otherCard2.contents, card.contents,matchScore*MATCH_BONUS];
                        
                         
                     }
@@ -109,7 +109,7 @@
                         self.score -= MISMATCH_PENALTY;
                         Card *otherCard1=[otherCards objectAtIndex:0];
                         Card *otherCard2=[otherCards objectAtIndex:1];
-                        description=[NSString stringWithFormat:@"%@, %@ & %@ don't match. %d point penalty",  otherCard1.contents, otherCard2.contents, card.contents,MISMATCH_PENALTY];
+                        description=[NSString stringWithFormat:@"%@ %@ & %@ don't match. %d point penalty",  otherCard1.contents, otherCard2.contents, card.contents,MISMATCH_PENALTY];
                        
                     }
                     //self.activeCards=nil;

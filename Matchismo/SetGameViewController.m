@@ -60,7 +60,7 @@
             NSMutableAttributedString *coloredCardContents=[[NSMutableAttributedString alloc] initWithString:cardContents];
             
             
-            [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[shapeCard.contents rangeOfString: shapeCard.contents]];
+            [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[cardContents rangeOfString: cardContents]];
             
             cardButton.selected = card.isFaceUp;
             if(card.isFaceUp)
@@ -81,7 +81,7 @@
         }
     }
     
-    [self.descriptionLabel setAttributedText:[self parseDescription:self.description]];
+    
        
     [super updateUI];
 }
@@ -90,6 +90,7 @@
 {
     NSMutableAttributedString *coloredDescription = [[NSMutableAttributedString alloc] init];
     NSArray *temp=[description componentsSeparatedByString:@" "];
+    NSRange r={NSNotFound,NSNotFound};
     for(int i=0;i<temp.count;i++)
     {
         NSString *s=temp[i];
@@ -98,11 +99,21 @@
             i++;
             s=temp[i];
             UIColor *color=[self getColor:s];
-            NSRange r=[[coloredDescription mutableString] rangeOfString:temp[i-2]];
+            if(r.location!=NSNotFound)
+            {
+                NSUInteger x=r.location+r.length;
+                r=[[[coloredDescription mutableString] substringFromIndex:x] rangeOfString:temp[i-2]];
+                r.location+=x;
+            }
+            else
+            {
+                r=[[coloredDescription mutableString] rangeOfString:temp[i-2]];
+            }
             [coloredDescription addAttributes: @{NSForegroundColorAttributeName: color} range: r];
         }
         else
         {
+            s=[s stringByAppendingString:@" "];
             [coloredDescription appendAttributedString:[[NSMutableAttributedString alloc] initWithString:s]];
         }
     }
@@ -118,7 +129,7 @@
 - (IBAction)flipCard:(UIButton *)sender
 {
     self.description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    
+    [self.descriptionLabel setAttributedText:[self parseDescription:self.description]];
     [super flipCard:sender];
 }
 
