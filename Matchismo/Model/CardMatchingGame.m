@@ -122,12 +122,9 @@
             self.score -= FLIP_COST;
             
             
-            [self.activeCards addObject:card];
+            //[self.activeCards addObject:card];
         }
-        else
-        {
-            [self.activeCards removeObject:card];
-        }
+        
         card.faceUp = !card.isFaceUp;
         
     }

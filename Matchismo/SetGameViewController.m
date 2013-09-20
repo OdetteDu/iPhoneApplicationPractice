@@ -49,11 +49,18 @@
         {
             ShapeCard *shapeCard=(ShapeCard *)card;
             
-
-            NSMutableAttributedString *cardContents=[[NSMutableAttributedString alloc] initWithString:shapeCard.contents];
+            NSString *cardContents=shapeCard.contents;
+            NSRange rangeOfColor=[cardContents rangeOfString: @"Color:"];
+            if(rangeOfColor.location!=NSNotFound)
+            {
+                cardContents=[cardContents substringToIndex:rangeOfColor.location-1];
+            }
             
             
-            [cardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[shapeCard.contents rangeOfString: shapeCard.contents]];
+            NSMutableAttributedString *coloredCardContents=[[NSMutableAttributedString alloc] initWithString:cardContents];
+            
+            
+            [coloredCardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[shapeCard.contents rangeOfString: shapeCard.contents]];
             
             cardButton.selected = card.isFaceUp;
             if(card.isFaceUp)
@@ -69,12 +76,38 @@
             cardButton.enabled = !card.isUnplayable;
             cardButton.alpha = (card.isUnplayable ? 0.1 :1.0);
             
-            [cardButton setAttributedTitle:cardContents forState:UIControlStateNormal];
+            [cardButton setAttributedTitle:coloredCardContents forState:UIControlStateNormal];
             
         }
     }
+    
+    [self.descriptionLabel setAttributedText:[self parseDescription:self.description]];
        
     [super updateUI];
+}
+
+-(NSMutableAttributedString *)parseDescription: (NSString *)description
+{
+    NSMutableAttributedString *coloredDescription = [[NSMutableAttributedString alloc] init];
+    NSArray *temp=[description componentsSeparatedByString:@" "];
+    for(int i=0;i<temp.count;i++)
+    {
+        NSString *s=temp[i];
+        if([s compare: @"Color:"]==0)
+        {
+            i++;
+            s=temp[i];
+            UIColor *color=[self getColor:s];
+            NSRange r=[[coloredDescription mutableString] rangeOfString:temp[i-2]];
+            [coloredDescription addAttributes: @{NSForegroundColorAttributeName: color} range: r];
+        }
+        else
+        {
+            [coloredDescription appendAttributedString:[[NSMutableAttributedString alloc] initWithString:s]];
+        }
+    }
+    
+    return coloredDescription;
 }
 
 -(void)viewDidLoad

@@ -31,8 +31,10 @@
     for(int i=0;i<self.count;i++)
     {
         contents=[contents stringByAppendingString: self.shape];
-        //NSLog(@"contents: %@, shape: %@",contents, self.shape);
     }
+    
+    [contents stringByAppendingString:@" Color: %@"];
+    [contents stringByAppendingString:self.color];
     
     return contents;
 }
