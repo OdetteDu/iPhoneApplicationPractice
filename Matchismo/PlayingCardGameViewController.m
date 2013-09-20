@@ -18,7 +18,7 @@
 //@synthesize game=_game;
 -(CardMatchingGame *)game
 {
-    if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init]];
+    if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init] option:0];
     return super.game;
 }
 

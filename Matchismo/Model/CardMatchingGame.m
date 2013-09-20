@@ -139,6 +139,7 @@
 
 -(id)initWithCardCount:(NSUInteger)count
              usingDeck:(Deck *)deck
+                option:(NSUInteger)mode
 {
     self = [super init];
     
@@ -159,6 +160,15 @@
             }
             
         }
+    }
+    
+    if(mode==0)
+    {
+        self.useThreeCard=NO;
+    }
+    else
+    {
+        self.useThreeCard=YES;
     }
     
     return self;

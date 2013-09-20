@@ -18,8 +18,8 @@
 
 -(CardMatchingGame *)game
 {
-    if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[ShapeCardDeck alloc] init]];
-    self.game.useThreeCard=YES;
+    if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[ShapeCardDeck alloc] init] option:1];
+    //self.game.useThreeCard=YES;
     return super.game;
 }
 
