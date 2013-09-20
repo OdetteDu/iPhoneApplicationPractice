@@ -14,7 +14,6 @@
 
 @property (readonly, nonatomic) int score;
 @property (nonatomic) Boolean useThreeCard;
-@property (strong, nonatomic) NSMutableArray *activeCards;
 
 //designated initializer
 -(id)initWithCardCount:(NSUInteger)count
