@@ -26,11 +26,12 @@
 
 -(NSString *)contents
 {
-    NSString *contents;
+    NSString *contents=@"";
     
     for(int i=0;i<self.count;i++)
     {
-        [contents stringByAppendingString: self.shape];
+        contents=[contents stringByAppendingString: self.shape];
+        //NSLog(@"contents: %@, shape: %@",contents, self.shape);
     }
     
     return contents;
