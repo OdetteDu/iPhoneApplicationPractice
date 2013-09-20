@@ -12,16 +12,32 @@
 #import "ShapeCard.h"
 
 @interface SetGameViewController ()
-//@property (strong, nonatomic) CardMatchingGame *setgame;
 @end
 
 @implementation SetGameViewController
 
-//@synthesize game=_game;
 -(CardMatchingGame *)game
 {
     if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[ShapeCardDeck alloc] init]];
     return super.game;
+}
+
+-(UIColor *)getColor:(NSString *)colorDescription
+{
+    UIColor *color;
+    if([colorDescription compare: @"Green"]==0)
+    {
+        color=[UIColor greenColor];
+    }
+    else if([colorDescription compare: @"Blue"]==0)
+    {
+        color=[UIColor blueColor];
+    }
+    else if([colorDescription compare: @"Red"]==0)
+    {
+        color=[UIColor redColor];
+    }
+    return color;
 }
 
 -(void)updateUI
@@ -32,24 +48,12 @@
         if([card isKindOfClass:[ShapeCard class]])
         {
             ShapeCard *shapeCard=(ShapeCard *)card;
-            UIColor *color;
-            if([shapeCard.color compare: @"Green"]==0)
-            {
-                color=[UIColor greenColor];
-            }
-            else if([shapeCard.color compare: @"Blue"]==0)
-            {
-                color=[UIColor blueColor];
-            }
-            else if([shapeCard.color compare: @"Red"]==0)
-            {
-                color=[UIColor redColor];
-            }
+            
 
             NSMutableAttributedString *cardContents=[[NSMutableAttributedString alloc] initWithString:shapeCard.contents];
             
             
-            [cardContents addAttributes: @{NSForegroundColorAttributeName: color} range:[shapeCard.contents rangeOfString: shapeCard.contents]];
+            [cardContents addAttributes: @{NSForegroundColorAttributeName: [self getColor: shapeCard.color]} range:[shapeCard.contents rangeOfString: shapeCard.contents]];
             
             cardButton.selected = card.isFaceUp;
             if(card.isFaceUp)

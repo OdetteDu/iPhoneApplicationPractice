@@ -15,6 +15,15 @@
 
 @implementation CardMatchingGame
 
+-(NSMutableArray *)activeCards
+{
+    if(!_activeCards)
+    {
+        _activeCards=[[NSMutableArray alloc] init];
+    }
+    return _activeCards;
+}
+
 -(NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -31,11 +40,13 @@
     
     Card *card = [self cardAtIndex:index];
     
+    
     if(card && !card.isUnplayable)
     {
         if(!card.isFaceUp)
         {
             description=[NSString stringWithFormat:@"Flipped up %@", card.contents];
+            
             
             if(!self.useThreeCard)
             {
@@ -56,7 +67,9 @@
                             otherCard.faceUp = NO;
                             self.score -= MISMATCH_PENALTY;
                             description=[NSString stringWithFormat:@"%@ & %@ don't match! %d point penalty!",card.contents, otherCard.contents, MISMATCH_PENALTY];
+                            
                         }
+                        self.activeCards=nil;
                         break;
                     }
                 }
@@ -98,6 +111,7 @@
                         Card *otherCard2=[otherCards objectAtIndex:1];
                         description=[NSString stringWithFormat:@"%@, %@ & %@ don't match. %d point penalty", card.contents, otherCard1.contents, otherCard2.contents, MISMATCH_PENALTY];
                     }
+                    self.activeCards=nil;
                 }
                 else
                 {
@@ -105,6 +119,11 @@
                 }
             }
             self.score -= FLIP_COST;
+            [self.activeCards addObject:card];
+        }
+        else
+        {
+            [self.activeCards removeObject:card];
         }
         card.faceUp = !card.isFaceUp;
         
