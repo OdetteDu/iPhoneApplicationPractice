@@ -43,7 +43,7 @@
     contents=[contents stringByAppendingString:@" Shadings: "];
     contents=[contents stringByAppendingString:self.shading];
     
-    NSLog(contents);
+    NSLog(@"Card Contents: %@",contents);
     return contents;
 }
 
