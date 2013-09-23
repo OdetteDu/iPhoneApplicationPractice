@@ -8,48 +8,39 @@
 
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCard.h"
+#import "PlayingCardCollectionViewCell.h"
 
 @interface PlayingCardGameViewController ()
-//@property (strong, nonatomic) CardMatchingGame *cardgame;
+
 @end
 
 @implementation PlayingCardGameViewController
 
-//@synthesize game=_game;
--(CardMatchingGame *)game
+-(Deck *)createDeck
 {
-    if (!super.game) super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init] option:0];
-    return super.game;
+    return [[ PlayingCardDeck alloc] init];
 }
 
-
-
--(void)updateUI
+- (NSUInteger)startingCardCount
 {
-    for(UIButton *cardButton in self.cardButtons)
+    return 20;
+}
+
+-(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card
+{
+    if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]])
     {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = (card.isUnplayable ? 0.3 :1.0);
-        
-        
-        cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        UIImage *cardBackImage = [UIImage imageNamed:@"bg.png"];
-        [cardButton setBackgroundImage: (cardButton.selected)? nil:cardBackImage forState: UIControlStateNormal];
-        self.descriptionLabel.text = self.description;
-        
+        PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingView;
+        if([card isKindOfClass:[PlayingCard class]])
+        {
+            PlayingCard *playingCard = (PlayingCard *)card;
+            playingCardView.rank=playingCard.rank;
+            playingCardView.suit=playingCard.suit;
+            playingCardView.faceUp=playingCard.isFaceUp;
+            playingCardView.alpha=playingCard.isUnplayable ? 0.3:1.0;
+        }
     }
-    [super updateUI];
-}
-
-- (IBAction)flipCard:(UIButton *)sender
-{
-    self.description=[self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    
-    [super flipCard:sender];
 }
 
 @end
