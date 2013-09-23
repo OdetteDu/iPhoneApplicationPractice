@@ -19,24 +19,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Matchismo/Model/CardMatchingGame.h"
-         timestampString = "400515776.248625"
+         timestampString = "401334511.17934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "17"
-         endingLineNumber = "17"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
          landmarkName = "useThreeCard"
          landmarkType = "19">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Matchismo/Model/CardMatchingGame.m"
-         timestampString = "400621743.160975"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "5"
-         endingLineNumber = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

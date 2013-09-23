@@ -19,5 +19,5 @@
 - (IBAction)flipCard:(UIButton *)sender;
 
 -(Deck *)createDeck;
--(void)updateCell: (UICollectionViewCell *)cell usingCard:(Card *)card
+-(void)updateCell: (UICollectionViewCell *)cell usingCard:(Card *)card;
 @end
