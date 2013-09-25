@@ -12,8 +12,9 @@
 
 @interface CardMatchingGame : NSObject
 
-@property (readonly, nonatomic) int score;
+@property (nonatomic) int score;
 @property (nonatomic) Boolean useThreeCard;
+@property (strong, nonatomic) NSMutableArray *cards; //of Card
 
 //designated initializer
 -(id)initWithCardCount:(NSUInteger)count

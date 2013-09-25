@@ -10,8 +10,6 @@
 #import "Deck.h"
 
 @interface CardMatchingGame()
-@property (readwrite, nonatomic) int score;
-@property (strong, nonatomic) NSMutableArray *cards; //of Card
 @property (strong, nonatomic) Deck *deck;
 
 @end
