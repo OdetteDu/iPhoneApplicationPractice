@@ -110,5 +110,6 @@
         [self.game addCards:1];
         [self.cardCollectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0]]];
     }
+    [self.cardCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
 @end
