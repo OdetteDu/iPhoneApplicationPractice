@@ -14,7 +14,7 @@
 #define MISMATCH_PENALTY 2
 #define FLIP_COST 1
 
--(NSString *)flipCardAtIndex:(NSUInteger)index
+-(BOOL)flipCardAtIndex:(NSUInteger)index
 {
     
     NSString *description;
@@ -74,7 +74,7 @@
         
     }
     
-    return description;
+    return false;
 }
 
 @end

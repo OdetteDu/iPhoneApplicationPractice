@@ -15,13 +15,20 @@
 @property (nonatomic) int score;
 @property (nonatomic) Boolean useThreeCard;
 @property (strong, nonatomic) NSMutableArray *cards; //of Card
+@property (strong, nonatomic) NSMutableArray *activeCardsIndexes; //of int
 
 //designated initializer
 -(id)initWithCardCount:(NSUInteger)count
              usingDeck:(Deck *)deck;
 
--(NSString *)flipCardAtIndex:(NSUInteger)index;
+-(BOOL)flipCardAtIndex:(NSUInteger)index;
 
 -(Card *)cardAtIndex:(NSUInteger)index;
+
+-(void)addCards:(NSUInteger) numberOfCards;
+
+-(void)removeCards: (NSArray *) indexes;
+
+-(Deck *)resetDeck;
 
 @end

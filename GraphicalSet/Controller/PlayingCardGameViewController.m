@@ -9,6 +9,7 @@
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
+#import "PlayingCardMatchingGame.h"
 #import "PlayingCardCollectionViewCell.h"
 
 @interface PlayingCardGameViewController ()
@@ -17,18 +18,18 @@
 
 @implementation PlayingCardGameViewController
 
--(Deck *)createDeck
+-(CardMatchingGame *)createGame
 {
-    return [[ PlayingCardDeck alloc] init];
-}
-
-- (NSUInteger)startingCardCount
-{
-    return 22;
+    return [[PlayingCardMatchingGame alloc] initWithCardCount:12 usingDeck:[[ PlayingCardDeck alloc] init] ];
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card
 {
+    if(card==nil)
+    {
+        NSLog(@"Card is nil");
+    }
+    
     if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]])
     {
         PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingView;

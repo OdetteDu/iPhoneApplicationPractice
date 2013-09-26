@@ -12,9 +12,6 @@
 
 @interface CardGameViewController : UIViewController
 
-
-@property (nonatomic) NSUInteger startingCardCount;
-
--(Deck *)createDeck;
+-(CardMatchingGame *)createGame;
 -(void)updateCell: (UICollectionViewCell *)cell usingCard:(Card *)card;
 @end

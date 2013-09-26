@@ -27,7 +27,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.startingCardCount;
+    return self.game.cards.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -45,11 +45,11 @@
 
 -(CardMatchingGame *)game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount usingDeck:[self createDeck] ];
+    if (!_game) _game = [self createGame];
     return _game;
 }
 
--(Deck *)createDeck
+-(CardMatchingGame *)createGame
 {
     return nil;//abstract
 }
@@ -60,7 +60,15 @@
     {
         NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
         Card *card = [self.game cardAtIndex:indexPath.item];
-        [self updateCell:cell usingCard:card];
+        if(card)
+        {
+            [self updateCell:cell usingCard:card];
+        }
+        else
+        {
+            //[self.cardCollectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+            [self.cardCollectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:0 inSection:0]]];
+        }
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
@@ -77,7 +85,19 @@
     NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
     if(indexPath)
     {
-        [self.game flipCardAtIndex:indexPath.item];
+        BOOL match=[self.game flipCardAtIndex:indexPath.item];
+        if(match)
+        {
+            NSMutableArray *cellsToBeRemoved=[[NSMutableArray alloc] init];
+            for (NSNumber *n in self.game.activeCardsIndexes)
+            {
+                int x=[n intValue];
+                
+                [cellsToBeRemoved addObject:[NSIndexPath indexPathForItem:x inSection:0]];
+            }
+            [self.game removeCards:self.game.activeCardsIndexes];
+            [self.cardCollectionView deleteItemsAtIndexPaths:cellsToBeRemoved];
+        }
         self.flipCount++;
         [self updateUI];
     }
@@ -92,4 +112,12 @@
     
 }
 
+- (IBAction)addCards:(UIButton *)sender
+{
+    for(int i=0;i<3;i++)
+    {
+        [self.game addCards:1];
+        [self.cardCollectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0]]];
+    }
+}
 @end
