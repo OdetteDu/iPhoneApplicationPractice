@@ -12,8 +12,6 @@
 
 @interface CardGameViewController () <UICollectionViewDataSource>
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @end
@@ -73,12 +71,6 @@
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
 }
 
--(void)setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text=[NSString stringWithFormat:@"Flips: %d", self.flipCount];
-}
-
 - (IBAction)flipCard:(UITapGestureRecognizer *)sender
 {
     CGPoint tapLocation = [sender locationInView:self.cardCollectionView];
@@ -98,7 +90,6 @@
             [self.game removeCards:self.game.activeCardsIndexes];
             [self.cardCollectionView deleteItemsAtIndexPaths:cellsToBeRemoved];
         }
-        self.flipCount++;
         [self updateUI];
     }
 }
@@ -106,8 +97,8 @@
 
 - (IBAction)deal:(UIButton *)sender
 {
-    self.flipCount=0;
     self.game=nil;
+    [self.cardCollectionView reloadData];
     [self updateUI];
     
 }
