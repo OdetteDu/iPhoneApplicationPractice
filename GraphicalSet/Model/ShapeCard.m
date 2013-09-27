@@ -11,17 +11,17 @@
 @implementation ShapeCard
 +(NSArray *)validShapes
 {
-    return @[@"●",@"■",@"▲"];
+    return @[@"Squiggles",@"Diamonds",@"Ovals"];
 }
 
 +(NSArray *)validColors
 {
-    return @[@"Green", @"Blue", @"Red"];
+    return @[@"Green", @"Purple", @"Red"];
 }
 
-+(NSArray *)validShadings
++(NSArray *)validFills
 {
-    return @[@"Empty", @"Fill", @"Stripe"];
+    return @[@"Solid", @"Striped", @"Unfilled"];
 }
 
 +(NSUInteger)maxCount
@@ -40,7 +40,7 @@
     
     contents=[contents stringByAppendingString:@" Color: "];
     contents=[contents stringByAppendingString:self.color];
-    contents=[contents stringByAppendingString:@" Shadings: "];
+    contents=[contents stringByAppendingString:@" Fills: "];
     contents=[contents stringByAppendingString:self.shading];
     
     NSLog(@"Card Contents: %@",contents);

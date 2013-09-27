@@ -16,7 +16,7 @@
     self=[super init];
     if(self)
     {
-        for(NSString *shading in [ShapeCard validShadings])
+        for(NSString *fill in [ShapeCard validFills])
         {
             for(NSString *shape in [ShapeCard validShapes])
             {
@@ -28,7 +28,7 @@
                         card.shape=shape;
                         card.color=color;
                         card.count=count;
-                        card.shading=shading;
+                        card.shading=fill;
                         [self addCard:card atTop:YES];
                     }
                 }
