@@ -28,14 +28,10 @@
             <objects>
                 <viewController id="8Ox-V6-eH1" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dTf-yo-H9f">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="480" height="251"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxY-Re-z66">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="7kG-Ps-lsC"/>
-                                    <constraint firstAttribute="width" constant="60" id="ExM-FV-Kv0"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Deal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,19 +45,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-SG-GzB">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="NaN-rv-LbB"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XZL-yo-bua">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="399" verticalHuggingPriority="463" horizontalCompressionResistancePriority="461" verticalCompressionResistancePriority="482" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XZL-yo-bua">
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Hq8-rD-Q06"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yn3-zz-f2v">
                                     <size key="itemSize" width="70" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -83,10 +73,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="61m-va-41V" firstAttribute="trailing" secondItem="zpt-TE-TPy" secondAttribute="trailing" type="default" id="FqC-9P-PXr"/>
-                                            <constraint firstItem="61m-va-41V" firstAttribute="bottom" secondItem="zpt-TE-TPy" secondAttribute="bottom" type="default" id="YCM-sj-rgB"/>
-                                            <constraint firstItem="61m-va-41V" firstAttribute="top" secondItem="zpt-TE-TPy" secondAttribute="top" type="default" id="c9I-Qh-5dv"/>
-                                            <constraint firstItem="61m-va-41V" firstAttribute="leading" secondItem="zpt-TE-TPy" secondAttribute="leading" type="default" id="lBa-3c-mXK"/>
+                                            <constraint firstItem="61m-va-41V" firstAttribute="trailing" secondItem="zpt-TE-TPy" secondAttribute="trailing" type="default" id="Kj0-dN-ijw"/>
+                                            <constraint firstItem="61m-va-41V" firstAttribute="leading" secondItem="zpt-TE-TPy" secondAttribute="leading" type="default" id="bds-MF-RqJ"/>
+                                            <constraint firstItem="61m-va-41V" firstAttribute="bottom" secondItem="zpt-TE-TPy" secondAttribute="bottom" type="default" id="gjY-Aa-Nc8"/>
+                                            <constraint firstItem="61m-va-41V" firstAttribute="top" secondItem="zpt-TE-TPy" secondAttribute="top" type="default" id="sU3-J8-Jh7"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="playingView" destination="61m-va-41V" id="LNX-pA-DX8"/>
@@ -99,9 +89,6 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWI-Vf-1ce">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="c2C-Lm-XPR"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Add">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,32 +101,36 @@
                                     <action selector="addCards:" destination="8Ox-V6-eH1" eventType="touchUpInside" id="iYT-7P-PTt"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-dk-CEj" customClass="DescriptionView">
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-dk-CEj" customClass="DescriptionView">
                                 <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" type="user" id="ieZ-dG-Rdn"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="baseline" secondItem="hAR-SG-GzB" secondAttribute="baseline" type="default" id="2v5-9p-0PX"/>
-                            <constraint firstAttribute="trailing" secondItem="hAR-SG-GzB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="3jg-Pn-5te"/>
-                            <constraint firstItem="XZL-yo-bua" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="5HW-Jv-kZj"/>
-                            <constraint firstAttribute="bottom" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="62" id="6l0-kk-HeN"/>
-                            <constraint firstItem="XZL-yo-bua" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" type="default" id="93c-Nw-0ZX"/>
-                            <constraint firstItem="vmp-dk-CEj" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" constant="299" id="GbV-jV-cQ2"/>
-                            <constraint firstAttribute="bottom" secondItem="hAR-SG-GzB" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="M2D-lG-mkc"/>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NmD-m0-vPh"/>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="centerY" secondItem="fxY-Re-z66" secondAttribute="centerY" type="default" id="Ovz-i5-O8d"/>
-                            <constraint firstAttribute="bottom" secondItem="fxY-Re-z66" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="RIv-Td-Nz5"/>
-                            <constraint firstItem="vmp-dk-CEj" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="bNN-Rf-XEA"/>
-                            <constraint firstItem="XZL-yo-bua" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="c8x-Ny-gTQ"/>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="top" secondItem="fxY-Re-z66" secondAttribute="top" type="default" id="eu5-gg-7Zd"/>
-                            <constraint firstItem="fxY-Re-z66" firstAttribute="top" secondItem="hAR-SG-GzB" secondAttribute="top" type="default" id="f43-6n-Ku9"/>
-                            <constraint firstItem="fxY-Re-z66" firstAttribute="centerX" secondItem="vmp-dk-CEj" secondAttribute="centerX" type="default" id="mDZ-LW-y8k"/>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="baseline" secondItem="fxY-Re-z66" secondAttribute="baseline" type="default" id="mn4-qD-7xn"/>
-                            <constraint firstItem="vmp-dk-CEj" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="ywf-21-mnP"/>
+                            <constraint firstAttribute="bottom" secondItem="XZL-yo-bua" secondAttribute="bottom" constant="100" type="user" id="50g-hy-xK5"/>
+                            <constraint firstItem="XZL-yo-bua" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" type="user" id="6Eg-WH-QDq"/>
+                            <constraint firstItem="vmp-dk-CEj" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="9Lj-l2-lCH"/>
+                            <constraint firstItem="hAR-SG-GzB" firstAttribute="top" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="F5x-Rp-la1"/>
+                            <constraint firstItem="XZL-yo-bua" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" type="user" id="G9D-w4-yio"/>
+                            <constraint firstItem="hAR-SG-GzB" firstAttribute="centerX" secondItem="vmp-dk-CEj" secondAttribute="centerX" type="default" id="HiF-Ut-kRv"/>
+                            <constraint firstItem="XZL-yo-bua" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="UUW-0V-VdQ"/>
+                            <constraint firstItem="fxY-Re-z66" firstAttribute="bottom" secondItem="dTf-yo-H9f" secondAttribute="bottom" type="user" id="Wxj-Fd-MrF"/>
+                            <constraint firstItem="vmp-dk-CEj" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="XMk-qU-WgP"/>
+                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="XS2-yg-zb7"/>
+                            <constraint firstItem="XZL-yo-bua" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="YRO-XT-atb"/>
+                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="bottom" secondItem="dTf-yo-H9f" secondAttribute="bottom" type="user" id="ZxR-Kq-0dx"/>
+                            <constraint firstAttribute="bottom" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="50" type="user" id="gCB-PO-AHH"/>
+                            <constraint firstAttribute="bottom" secondItem="hAR-SG-GzB" secondAttribute="bottom" constant="2" type="user" id="kRI-qu-3Af"/>
+                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="baseline" secondItem="fxY-Re-z66" secondAttribute="baseline" type="user" id="tYu-ZU-y0a"/>
+                            <constraint firstItem="fxY-Re-z66" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="xGi-46-kMe"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Card" id="TM5-Oc-kl0"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="XZL-yo-bua" id="r3y-ek-Who"/>
                         <outlet property="descriptionView" destination="vmp-dk-CEj" id="Yxu-Fo-PHp"/>
@@ -153,7 +144,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-477" y="-498"/>
+            <point key="canvasLocation" x="-585" y="-432"/>
         </scene>
         <!--Set Card Game View Controller - Set-->
         <scene sceneID="Ody-o6-53P">
@@ -163,12 +154,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K54-VA-en2">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="402" verticalHuggingPriority="406" horizontalCompressionResistancePriority="479" verticalCompressionResistancePriority="472" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="K54-VA-en2">
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="291" id="UxG-if-Z6a"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9N8-ZH-QWa">
                                     <size key="itemSize" width="90" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -190,10 +178,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="top" secondItem="KWK-Hw-oYV" secondAttribute="top" type="default" id="FkV-mU-Pc0"/>
-                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="leading" secondItem="KWK-Hw-oYV" secondAttribute="leading" type="default" id="PdD-ta-9ge"/>
-                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="trailing" secondItem="KWK-Hw-oYV" secondAttribute="trailing" type="default" id="dao-Ik-yjw"/>
-                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="bottom" secondItem="KWK-Hw-oYV" secondAttribute="bottom" type="default" id="eJR-bL-iCc"/>
+                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="trailing" secondItem="KWK-Hw-oYV" secondAttribute="trailing" type="default" id="YOt-KN-SJI"/>
+                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="top" secondItem="KWK-Hw-oYV" secondAttribute="top" type="default" id="bAv-Fi-Opz"/>
+                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="bottom" secondItem="KWK-Hw-oYV" secondAttribute="bottom" type="default" id="fAD-mR-LR3"/>
+                                            <constraint firstItem="qhu-Rq-dDF" firstAttribute="leading" secondItem="KWK-Hw-oYV" secondAttribute="leading" type="default" id="rUg-ES-wq2"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="setView" destination="qhu-Rq-dDF" id="vAG-SN-zAB"/>
@@ -205,27 +193,7 @@
                                     <outletCollection property="gestureRecognizers" destination="FLn-8h-mQo" appends="YES" id="YLD-5O-Mrg"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftz-3d-NVP">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="8BN-2j-UtV"/>
-                                    <constraint firstAttribute="width" constant="60" id="Dhe-tc-M1p"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addCards:" destination="mxl-Gi-tK1" eventType="touchUpInside" id="KfT-H2-Fzx"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTN-sG-Kdh">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="QV4-na-zG2"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Deal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -238,37 +206,50 @@
                                     <action selector="deal:" destination="mxl-Gi-tK1" eventType="touchUpInside" id="2ak-K5-TZC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score:0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvB-cr-iYx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftz-3d-NVP">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addCards:" destination="mxl-Gi-tK1" eventType="touchUpInside" id="KfT-H2-Fzx"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="K6D-hC-A8y" customClass="DescriptionView">
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="cq5-df-lhd"/>
+                                    <constraint firstAttribute="height" constant="49" type="user" id="h6c-MT-XXc"/>
                                 </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score:0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IvB-cr-iYx">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K6D-hC-A8y" customClass="DescriptionView">
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="K6D-hC-A8y" firstAttribute="top" secondItem="9yC-Kk-efO" secondAttribute="top" constant="291" id="2nx-mf-e6n"/>
-                            <constraint firstItem="K54-VA-en2" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="598-Nh-AgG"/>
-                            <constraint firstItem="Ftz-3d-NVP" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="5Q4-Ej-30V"/>
-                            <constraint firstAttribute="bottom" secondItem="Ftz-3d-NVP" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="5pK-g1-bnH"/>
-                            <constraint firstItem="K54-VA-en2" firstAttribute="top" secondItem="9yC-Kk-efO" secondAttribute="top" type="default" id="74J-vP-dMq"/>
-                            <constraint firstAttribute="bottom" secondItem="IvB-cr-iYx" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Ln2-rP-kWy"/>
-                            <constraint firstItem="K6D-hC-A8y" firstAttribute="centerX" secondItem="tTN-sG-Kdh" secondAttribute="centerX" type="default" id="PkK-nx-BIS"/>
-                            <constraint firstItem="Ftz-3d-NVP" firstAttribute="top" secondItem="tTN-sG-Kdh" secondAttribute="top" type="default" id="aAt-4T-7vd"/>
-                            <constraint firstAttribute="bottom" secondItem="tTN-sG-Kdh" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="aQl-1f-JJQ"/>
-                            <constraint firstItem="K6D-hC-A8y" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="cGc-8e-qHX"/>
-                            <constraint firstAttribute="bottom" secondItem="K6D-hC-A8y" secondAttribute="bottom" constant="70" id="f9s-na-IaO"/>
-                            <constraint firstAttribute="trailing" secondItem="IvB-cr-iYx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lsp-dq-pzt"/>
-                            <constraint firstItem="K54-VA-en2" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="n0R-x7-5Dw"/>
-                            <constraint firstItem="K6D-hC-A8y" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="unE-me-y9W"/>
+                            <constraint firstItem="IvB-cr-iYx" firstAttribute="centerX" secondItem="K6D-hC-A8y" secondAttribute="centerX" type="default" id="1va-PZ-NJa"/>
+                            <constraint firstAttribute="bottom" secondItem="K54-VA-en2" secondAttribute="bottom" constant="100" type="user" id="3fF-tp-JfG"/>
+                            <constraint firstItem="IvB-cr-iYx" firstAttribute="centerY" secondItem="tTN-sG-Kdh" secondAttribute="centerY" type="default" id="HiW-5y-XxQ"/>
+                            <constraint firstItem="K54-VA-en2" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="Hz9-w6-l0I"/>
+                            <constraint firstItem="K6D-hC-A8y" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="J5R-9u-Gue"/>
+                            <constraint firstItem="K6D-hC-A8y" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="PzL-uG-2xg"/>
+                            <constraint firstItem="K54-VA-en2" firstAttribute="top" secondItem="9yC-Kk-efO" secondAttribute="top" type="user" id="Tog-uF-Nd2"/>
+                            <constraint firstItem="Ftz-3d-NVP" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="aqp-Ix-zl4"/>
+                            <constraint firstItem="Ftz-3d-NVP" firstAttribute="top" secondItem="K6D-hC-A8y" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="baq-lJ-BEn"/>
+                            <constraint firstItem="tTN-sG-Kdh" firstAttribute="bottom" secondItem="9yC-Kk-efO" secondAttribute="bottom" type="user" id="sPw-px-3Fj"/>
+                            <constraint firstItem="K54-VA-en2" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="tHR-pu-T0m"/>
+                            <constraint firstItem="tTN-sG-Kdh" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="vpC-Rx-cye"/>
+                            <constraint firstItem="Ftz-3d-NVP" firstAttribute="bottom" secondItem="9yC-Kk-efO" secondAttribute="bottom" type="user" id="z6Y-29-Zm7"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" id="Dt2-oO-7nL"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="K54-VA-en2" id="0SE-6Y-wuC"/>
                         <outlet property="descriptionView" destination="K6D-hC-A8y" id="Vkg-Oh-tDU"/>
@@ -289,9 +270,6 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addCards:" candidateClass="UIButton"/>
-                <relationship kind="action" name="deal:" candidateClass="UIButton"/>
-                <relationship kind="action" name="flipCard:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="cardCollectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="descriptionView" candidateClass="DescriptionView"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
@@ -338,9 +316,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
