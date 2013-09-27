@@ -20,15 +20,11 @@
 
 -(CardMatchingGame *)createGame
 {
-    return [[PlayingCardMatchingGame alloc] initWithCardCount:12 usingDeck:[[ PlayingCardDeck alloc] init] ];
+    return [[PlayingCardMatchingGame alloc] initWithCardCount:22 usingDeck:[[ PlayingCardDeck alloc] init] ];
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card
 {
-    if(card==nil)
-    {
-        NSLog(@"Card is nil");
-    }
     
     if ([cell isKindOfClass:[PlayingCardCollectionViewCell class]])
     {

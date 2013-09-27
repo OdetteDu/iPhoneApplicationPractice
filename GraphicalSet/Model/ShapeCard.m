@@ -41,7 +41,7 @@
     contents=[contents stringByAppendingString:@" Color: "];
     contents=[contents stringByAppendingString:self.color];
     contents=[contents stringByAppendingString:@" Fills: "];
-    contents=[contents stringByAppendingString:self.shading];
+    contents=[contents stringByAppendingString:self.fill];
     
     NSLog(@"Card Contents: %@",contents);
     return contents;
@@ -92,9 +92,9 @@
             }
         }
         
-        if([otherCard1.shading isEqualToString: self.shading] || [otherCard2.shading isEqualToString: self.shading] || [otherCard1.shading isEqualToString: otherCard2.shading])
+        if([otherCard1.fill isEqualToString: self.fill] || [otherCard2.fill isEqualToString: self.fill] || [otherCard1.fill isEqualToString: otherCard2.fill])
         {
-            if([otherCard1.shading isEqualToString: self.shading] && [otherCard2.shading isEqualToString: self.shading] )
+            if([otherCard1.fill isEqualToString: self.fill] && [otherCard2.fill isEqualToString: self.fill] )
             {
                 score=4;
             }

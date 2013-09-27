@@ -8,22 +8,38 @@
 
 #import "SetCardGameViewController.h"
 #import "SetCardView.h"
+#import "ShapeCard.h"
+#import "ShapeCardDeck.h"
+#import "SetCardMatchingGame.h"
+#import "SetCardCollectionViewCell.h"
 
 @interface SetCardGameViewController ()
-@property (weak, nonatomic) IBOutlet SetCardView *setCardView;
 
 @end
 
 @implementation SetCardGameViewController
 
--(void)setSetCardView:(SetCardView *)setCardView
+-(CardMatchingGame *)createGame
 {
-    _setCardView=setCardView;
-    setCardView.fill=@"Striped";
-    setCardView.color=@"Red";
-    setCardView.shape=@"Diamonds";
-    setCardView.count=3;
-    
+    return [[SetCardMatchingGame alloc] initWithCardCount:12 usingDeck:[[ShapeCardDeck alloc]init]];
+}
+
+-(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card
+{
+
+    if ([cell isKindOfClass:[SetCardCollectionViewCell class]])
+    {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setView;
+        if([card isKindOfClass:[ShapeCard class]])
+        {
+            ShapeCard *shapeCard = (ShapeCard *)card;
+            setCardView.count=shapeCard.count;
+            setCardView.shape=shapeCard.shape;
+            setCardView.fill=shapeCard.fill;
+            setCardView.color=shapeCard.color;
+            setCardView.alpha=shapeCard.isUnplayable ? 0.3:1.0;
+        }
+    }
 }
 
 @end

@@ -28,7 +28,7 @@
                         card.shape=shape;
                         card.color=color;
                         card.count=count;
-                        card.shading=fill;
+                        card.fill=fill;
                         [self addCard:card atTop:YES];
                     }
                 }

@@ -7,6 +7,7 @@
 //
 
 #import "SetCardMatchingGame.h"
+#import "ShapeCardDeck.h"
 
 @implementation SetCardMatchingGame
 
@@ -16,7 +17,8 @@
 
 -(BOOL)flipCardAtIndex:(NSUInteger)index
 {
-    
+    BOOL match=NO;
+    self.activeCardsIndexes=nil;
     NSString *description;
     
     Card *card = [self cardAtIndex:index];
@@ -28,10 +30,12 @@
             description=[NSString stringWithFormat:@"Flipped up %@", card.contents];
             
             NSMutableArray *otherCards=[[NSMutableArray alloc] init];
-            for(Card *otherCard in self.cards)
+            for(int i=0; i<self.cards.count; i++)
             {
+                Card *otherCard=[self.cards objectAtIndex:i];
                 if(otherCard.isFaceUp && !otherCard.isUnplayable)
                 {
+                    [self.activeCardsIndexes addObject:[NSNumber numberWithInt:i]];
                     [otherCards addObject:otherCard];
                 }
             }
@@ -50,6 +54,7 @@
                     Card *otherCard1=[otherCards objectAtIndex:0];
                     Card *otherCard2=[otherCards objectAtIndex:1];
                     description=[NSString stringWithFormat:@"%@ %@ & %@ matched for %d points",  otherCard1.contents, otherCard2.contents, card.contents,matchScore*MATCH_BONUS];
+                    match=YES;
                     
                     
                 }
@@ -63,6 +68,7 @@
                     Card *otherCard1=[otherCards objectAtIndex:0];
                     Card *otherCard2=[otherCards objectAtIndex:1];
                     description=[NSString stringWithFormat:@"%@ %@ & %@ don't match. %d point penalty",  otherCard1.contents, otherCard2.contents, card.contents,MISMATCH_PENALTY];
+                    match=NO;
                     
                 }
             }
@@ -71,10 +77,18 @@
         }
         
         card.faceUp = !card.isFaceUp;
-        
+        if(card.faceUp)
+        {
+            [self.activeCardsIndexes addObject:[NSNumber numberWithInt:index]];
+        }
     }
     
-    return false;
+    return match;
+}
+
+-(Deck *)resetDeck
+{
+    return [[ShapeCardDeck alloc]init];
 }
 
 @end
