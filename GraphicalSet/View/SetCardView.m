@@ -32,17 +32,22 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:12.0];
+    [self drawBorder:self.bounds];
+    
+    [self drawMultipleShapes:self.count withShape:self.shape withColor:self.color filledWith:self.fill withBounds:self.bounds];
+}
+
+- (void)drawBorder:(CGRect)bounds
+{
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:12.0];
     
     [roundedRect addClip];
     
     [[UIColor whiteColor] setFill];
-    UIRectFill(self.bounds);
+    UIRectFill(bounds);
     
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
-    
-    [self drawContent];
 }
 
 -(UIBezierPath *)getPath:(NSString *)shape withScale:(NSUInteger) scale withUpperLeftCorner:(CGPoint)position
@@ -78,36 +83,32 @@
     return path;
 }
 
--(void)drawContent
+-(void)drawMultipleShapes:(NSUInteger)count withShape:(NSString *)shape withColor:(NSString *)color filledWith:(NSString *)fill withBounds:(CGRect)bounds
 {
-    NSUInteger scale=self.bounds.size.width/12;
-    CGPoint center=CGPointMake(self.bounds.origin.x+self.bounds.size.width/2, self.bounds.origin.y+self.bounds.size.height/2);
-    CGPoint leftCenter=CGPointMake(self.bounds.origin.x+self.bounds.size.width/4, self.bounds.origin.y+self.bounds.size.height/2);
-    CGPoint rightCenter=CGPointMake(self.bounds.origin.x+self.bounds.size.width/4*3, self.bounds.origin.y+self.bounds.size.height/2);
+    NSUInteger scale=bounds.size.width/12;
+    CGPoint center=CGPointMake(bounds.origin.x+bounds.size.width/2, bounds.origin.y+bounds.size.height/2);
+    CGPoint leftCenter=CGPointMake(bounds.origin.x+bounds.size.width/4, bounds.origin.y+bounds.size.height/2);
+    CGPoint rightCenter=CGPointMake(bounds.origin.x+bounds.size.width/4*3, bounds.origin.y+bounds.size.height/2);
     
-    if(self.count==1 || self.count==3)
+    if(count==1 || count==3)
     {
-        [self draw:[self getPath: self.shape withScale:scale withUpperLeftCorner:CGPointMake(center.x-2*scale, center.y-2*scale)] withColor:[self getColor: self.color] filledWith:self.fill withScale:scale withUpperLeftCorner:CGPointMake(center.x-2*scale, center.y-2*scale)];
+        [self drawSingleShape:[self getPath: shape withScale:scale withUpperLeftCorner:CGPointMake(center.x-2*scale, center.y-2*scale)] withColor:[self getColor: color] filledWith:fill withScale:scale withUpperLeftCorner:CGPointMake(center.x-2*scale, center.y-2*scale)];
     }
     
-    if(self.count==2 || self.count==3)
+    if(count==2 || count==3)
     {
-        [self draw:[self getPath: self.shape withScale:scale withUpperLeftCorner:CGPointMake(leftCenter.x-2*scale, leftCenter.y-2*scale)] withColor:[self   getColor: self.color] filledWith:self.fill withScale:scale withUpperLeftCorner:CGPointMake(leftCenter.x-2*scale, leftCenter.y-2*scale)];
+        [self drawSingleShape:[self getPath: shape withScale:scale withUpperLeftCorner:CGPointMake(leftCenter.x-2*scale, leftCenter.y-2*scale)] withColor:[self   getColor: color] filledWith:fill withScale:scale withUpperLeftCorner:CGPointMake(leftCenter.x-2*scale, leftCenter.y-2*scale)];
         
-        [self draw:[self getPath: self.shape withScale:scale withUpperLeftCorner:CGPointMake(rightCenter.x-2*scale, rightCenter.y-2*scale)] withColor:[self   getColor: self.color] filledWith:self.fill withScale:scale withUpperLeftCorner:CGPointMake(rightCenter.x-2*scale, rightCenter.y-2*scale)];
+        [self drawSingleShape:[self getPath: shape withScale:scale withUpperLeftCorner:CGPointMake(rightCenter.x-2*scale, rightCenter.y-2*scale)] withColor:[self   getColor: color] filledWith:fill withScale:scale withUpperLeftCorner:CGPointMake(rightCenter.x-2*scale, rightCenter.y-2*scale)];
     }
     
 }
 
--(void)draw:(UIBezierPath *)path withColor:(UIColor *) color filledWith: (NSString *)fill withScale:(NSUInteger) scale withUpperLeftCorner:(CGPoint)position
+-(void)drawSingleShape:(UIBezierPath *)path withColor:(UIColor *) color filledWith: (NSString *)fill withScale:(NSUInteger) scale withUpperLeftCorner:(CGPoint)position
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     
-//    if([self.shape compare: @"Squiggles"]==0)
-//    {
-//        CGContextRotateCTM(context, -M_PI/8);
-//    }
     
     if([self.fill compare: @"Solid"]==0)
     {

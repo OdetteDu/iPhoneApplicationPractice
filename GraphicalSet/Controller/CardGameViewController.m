@@ -7,13 +7,14 @@
 //
 
 #import "CardGameViewController.h"
-
+#import "DescriptionView.h"
 
 
 @interface CardGameViewController () <UICollectionViewDataSource>
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
+@property (weak, nonatomic) IBOutlet DescriptionView *descriptionView;
 @end
 
 @implementation CardGameViewController
@@ -78,18 +79,29 @@
     if(indexPath)
     {
         BOOL match=[self.game flipCardAtIndex:indexPath.item];
+        
+        NSMutableArray *activeCards=[[NSMutableArray alloc]init];
+        
+        NSMutableArray *cellsToBeRemoved=[[NSMutableArray alloc] init];
+        
+        for (NSNumber *n in self.game.activeCardsIndexes)
+        {
+            int x=[n intValue];
+            
+            [cellsToBeRemoved addObject:[NSIndexPath indexPathForItem:x inSection:0]];
+            [activeCards addObject:[self.game cardAtIndex:x]];
+        }
+        
         if(match)
         {
-            NSMutableArray *cellsToBeRemoved=[[NSMutableArray alloc] init];
-            for (NSNumber *n in self.game.activeCardsIndexes)
-            {
-                int x=[n intValue];
-                
-                [cellsToBeRemoved addObject:[NSIndexPath indexPathForItem:x inSection:0]];
-            }
+            
             [self.game removeCards:self.game.activeCardsIndexes];
             [self.cardCollectionView deleteItemsAtIndexPaths:cellsToBeRemoved];
         }
+        
+        self.descriptionView.match=match;
+        self.descriptionView.activeCards=activeCards;
+        
         [self updateUI];
     }
 }
