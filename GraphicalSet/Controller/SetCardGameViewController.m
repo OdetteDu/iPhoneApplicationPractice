@@ -37,6 +37,7 @@
             setCardView.shape=shapeCard.shape;
             setCardView.fill=shapeCard.fill;
             setCardView.color=shapeCard.color;
+            setCardView.faceUp=shapeCard.faceUp;
             setCardView.alpha=shapeCard.isUnplayable ? 0.3:1.0;
         }
     }

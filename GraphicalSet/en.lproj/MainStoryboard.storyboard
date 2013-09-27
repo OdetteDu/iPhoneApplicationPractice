@@ -123,17 +123,17 @@
                             <constraint firstItem="xWI-Vf-1ce" firstAttribute="baseline" secondItem="hAR-SG-GzB" secondAttribute="baseline" type="default" id="2v5-9p-0PX"/>
                             <constraint firstAttribute="trailing" secondItem="hAR-SG-GzB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="3jg-Pn-5te"/>
                             <constraint firstItem="XZL-yo-bua" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="5HW-Jv-kZj"/>
+                            <constraint firstAttribute="bottom" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="62" id="6l0-kk-HeN"/>
                             <constraint firstItem="XZL-yo-bua" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" type="default" id="93c-Nw-0ZX"/>
                             <constraint firstItem="vmp-dk-CEj" firstAttribute="top" secondItem="dTf-yo-H9f" secondAttribute="top" constant="299" id="GbV-jV-cQ2"/>
                             <constraint firstAttribute="bottom" secondItem="hAR-SG-GzB" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="M2D-lG-mkc"/>
-                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="top" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NND-qI-jlk"/>
                             <constraint firstItem="xWI-Vf-1ce" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NmD-m0-vPh"/>
                             <constraint firstItem="xWI-Vf-1ce" firstAttribute="centerY" secondItem="fxY-Re-z66" secondAttribute="centerY" type="default" id="Ovz-i5-O8d"/>
                             <constraint firstAttribute="bottom" secondItem="fxY-Re-z66" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="RIv-Td-Nz5"/>
                             <constraint firstItem="vmp-dk-CEj" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="bNN-Rf-XEA"/>
-                            <constraint firstItem="hAR-SG-GzB" firstAttribute="top" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="bhX-qx-IRW"/>
                             <constraint firstItem="XZL-yo-bua" firstAttribute="leading" secondItem="dTf-yo-H9f" secondAttribute="leading" type="default" id="c8x-Ny-gTQ"/>
-                            <constraint firstItem="fxY-Re-z66" firstAttribute="top" secondItem="vmp-dk-CEj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dyE-Zp-K3x"/>
+                            <constraint firstItem="xWI-Vf-1ce" firstAttribute="top" secondItem="fxY-Re-z66" secondAttribute="top" type="default" id="eu5-gg-7Zd"/>
+                            <constraint firstItem="fxY-Re-z66" firstAttribute="top" secondItem="hAR-SG-GzB" secondAttribute="top" type="default" id="f43-6n-Ku9"/>
                             <constraint firstItem="fxY-Re-z66" firstAttribute="centerX" secondItem="vmp-dk-CEj" secondAttribute="centerX" type="default" id="mDZ-LW-y8k"/>
                             <constraint firstItem="xWI-Vf-1ce" firstAttribute="baseline" secondItem="fxY-Re-z66" secondAttribute="baseline" type="default" id="mn4-qD-7xn"/>
                             <constraint firstItem="vmp-dk-CEj" firstAttribute="trailing" secondItem="dTf-yo-H9f" secondAttribute="trailing" type="default" id="ywf-21-mnP"/>
@@ -259,10 +259,10 @@
                             <constraint firstItem="K54-VA-en2" firstAttribute="top" secondItem="9yC-Kk-efO" secondAttribute="top" type="default" id="74J-vP-dMq"/>
                             <constraint firstAttribute="bottom" secondItem="IvB-cr-iYx" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Ln2-rP-kWy"/>
                             <constraint firstItem="K6D-hC-A8y" firstAttribute="centerX" secondItem="tTN-sG-Kdh" secondAttribute="centerX" type="default" id="PkK-nx-BIS"/>
-                            <constraint firstAttribute="bottom" secondItem="K6D-hC-A8y" secondAttribute="bottom" constant="60" id="PtE-fS-chV"/>
                             <constraint firstItem="Ftz-3d-NVP" firstAttribute="top" secondItem="tTN-sG-Kdh" secondAttribute="top" type="default" id="aAt-4T-7vd"/>
                             <constraint firstAttribute="bottom" secondItem="tTN-sG-Kdh" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="aQl-1f-JJQ"/>
                             <constraint firstItem="K6D-hC-A8y" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="cGc-8e-qHX"/>
+                            <constraint firstAttribute="bottom" secondItem="K6D-hC-A8y" secondAttribute="bottom" constant="70" id="f9s-na-IaO"/>
                             <constraint firstAttribute="trailing" secondItem="IvB-cr-iYx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lsp-dq-pzt"/>
                             <constraint firstItem="K54-VA-en2" firstAttribute="trailing" secondItem="9yC-Kk-efO" secondAttribute="trailing" type="default" id="n0R-x7-5Dw"/>
                             <constraint firstItem="K6D-hC-A8y" firstAttribute="leading" secondItem="9yC-Kk-efO" secondAttribute="leading" type="default" id="unE-me-y9W"/>
@@ -285,6 +285,64 @@
             <point key="canvasLocation" x="-485" y="81"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CardGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addCards:" candidateClass="UIButton"/>
+                <relationship kind="action" name="deal:" candidateClass="UIButton"/>
+                <relationship kind="action" name="flipCard:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="cardCollectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="descriptionView" candidateClass="DescriptionView"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardView.h"/>
+        </class>
+        <class className="DescriptionView" superclassName="SetCardView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DescriptionView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlayingCardCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="playingView" candidateClass="PlayingCardView"/>
+            </relationships>
+        </class>
+        <class className="PlayingCardGameViewController" superclassName="CardGameViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardGameViewController.h"/>
+        </class>
+        <class className="PlayingCardView" superclassName="CardView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardView.h"/>
+        </class>
+        <class className="SetCardCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="setView" candidateClass="SetCardView"/>
+            </relationships>
+        </class>
+        <class className="SetCardGameViewController" superclassName="CardGameViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardGameViewController.h"/>
+        </class>
+        <class className="SetCardView" superclassName="CardView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetCardView.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

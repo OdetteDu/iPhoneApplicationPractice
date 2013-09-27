@@ -19,11 +19,11 @@
         PlayingCard *otherCard = [otherCards lastObject];
         if ([otherCard.suit isEqualToString: self.suit])
         {
-            score = 1;
+            score = 4;
         }
         else if(otherCard.rank == self.rank)
         {
-            score = 3;
+            score = 4;
         }
     }
     else if ([otherCards count] == 2)

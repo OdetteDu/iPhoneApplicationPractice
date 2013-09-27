@@ -28,6 +28,12 @@
     [self setNeedsDisplay];
 }
 
+-(void)setFaceUp:(BOOL)faceUp
+{
+    _faceUp=faceUp;
+    [self setNeedsDisplay];
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -43,7 +49,15 @@
     
     [roundedRect addClip];
     
-    [[UIColor whiteColor] setFill];
+    if(self.faceUp)
+    {        
+        [[UIColor lightGrayColor] setFill];
+    }
+    else
+    {
+        [[UIColor whiteColor] setFill];
+    }
+        
     UIRectFill(bounds);
     
     [[UIColor blackColor] setStroke];
@@ -56,11 +70,11 @@
     CGFloat x=position.x;
     CGFloat y=position.y;
     
-    if([self.shape compare: @"Ovals"]==0)
+    if([shape compare: @"Ovals"]==0)
     {
         path=[UIBezierPath bezierPathWithOvalInRect:CGRectMake(1*scale+x,0*scale+y,2*scale,4*scale)];
     }
-    else if([self.shape compare: @"Squiggles"]==0)
+    else if([shape compare: @"Squiggles"]==0)
     {
         path=[UIBezierPath bezierPathWithArcCenter: CGPointMake(2*scale+x,0*scale+y) radius:1*scale startAngle:0 endAngle:M_PI/2 clockwise:YES];
         [path addArcWithCenter:CGPointMake(2*scale+x, 3*scale+y) radius:2*scale startAngle:M_PI*3/2 endAngle:M_PI clockwise:NO];
@@ -71,7 +85,7 @@
         
         
     }
-    else if([self.shape compare: @"Diamonds"]==0)
+    else if([shape compare: @"Diamonds"]==0)
     {
         path=[[UIBezierPath alloc] init];
         [path moveToPoint:CGPointMake(2*scale+x, 0*scale+y)];
@@ -110,13 +124,13 @@
     CGContextSaveGState(context);
     
     
-    if([self.fill compare: @"Solid"]==0)
+    if([fill compare: @"Solid"]==0)
     {
         [path addClip];
         [color setFill];
         [path fill];
     }
-    else if([self.fill compare: @"Striped"]==0)
+    else if([fill compare: @"Striped"]==0)
     {
         [path addClip];
         [color setStroke];
@@ -129,7 +143,7 @@
         }
         
     }
-    else if([self.fill compare: @"Unfilled"]==0)
+    else if([fill compare: @"Unfilled"]==0)
     {
         [path addClip];
         [color setStroke];
@@ -148,7 +162,7 @@
     }
     else if([colorDescription compare: @"Purple"]==0)
     {
-        color=[UIColor blueColor];
+        color=[UIColor purpleColor];
     }
     else if([colorDescription compare: @"Red"]==0)
     {

@@ -12,7 +12,7 @@
 @implementation PlayingCardMatchingGame
 
 #define MATCH_BONUS 4
-#define MISMATCH_PENALTY 2
+#define MISMATCH_PENALTY 1
 #define FLIP_COST 1
 
 -(BOOL)flipCardAtIndex:(NSUInteger)index

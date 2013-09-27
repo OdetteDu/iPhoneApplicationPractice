@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *shape;
 @property (nonatomic) NSUInteger count;
+@property (nonatomic) BOOL faceUp;
 
 -(void)drawMultipleShapes:(NSUInteger)count withShape:(NSString *)shape withColor:(NSString *)color filledWith:(NSString *)fill withBounds:(CGRect)bounds;
 - (void)drawBorder:(CGRect)bounds;

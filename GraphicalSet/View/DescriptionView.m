@@ -33,12 +33,14 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    BOOL useShapeCard=NO;
     int i;
     for(i=0;i<self.activeCards.count;i++)
     {
         Card *card=[self.activeCards objectAtIndex:i];
         if([card isKindOfClass:[ShapeCard class]])
         {
+            useShapeCard=YES;
             ShapeCard *shapeCard=(ShapeCard *)card;
             CGRect bounds=CGRectMake(5+i*60, 5, 60, 40);
             UIBezierPath *rect = [UIBezierPath bezierPathWithRect:bounds];
@@ -55,31 +57,66 @@
     
     NSString *text=@"";
     
-    if(self.match)
+    if(useShapeCard)
     {
-        text=@"matched.\n  16 points awards.";
+        if(self.match)
+        {
+            text=@"matched.\n  16 points awards.";
+        }
+        else
+        {
+            if(self.activeCards.count==3)
+            {
+                text=@"do not match. \n  4 points penalty.";
+            }
+            else if(self.activeCards.count!=0)
+            {
+                text=@"flipped.";
+            }
+        }
     }
     else
     {
-        if(self.activeCards.count==3)
+        for(i=0;i<self.activeCards.count;i++)
         {
-            text=@"do not match. \n  4 points penalty.";
+            Card *card=[self.activeCards objectAtIndex:i];
+            if([card isKindOfClass:[PlayingCard class]])
+            {
+                PlayingCard *playingCard=(PlayingCard *)card;
+                text=[text stringByAppendingFormat:@" %@",playingCard.contents];
+            }
         }
-        else if(self.activeCards.count!=0)
+        
+        if(self.match)
         {
-            text=@"flipped.";
+            text=[text stringByAppendingFormat:@"matched. 16 points awards."];
+        }
+        else
+        {
+            if(self.activeCards.count==2)
+            {
+                text=[text stringByAppendingFormat:@"do not match. 4 points penalty."];
+            }
+            else if(self.activeCards.count!=0)
+            {
+                text=[text stringByAppendingFormat:@"flipped."];
+            }
         }
     }
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
-    UIFont *cornerFont = [UIFont systemFontOfSize:self.bounds.size.height * 0.20];
+    UIFont *cornerFont = [UIFont systemFontOfSize:self.bounds.size.height * 0.30];
     
     NSAttributedString *cornerText = [[NSAttributedString alloc] initWithString: text attributes:@{ NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : cornerFont}];
     
     CGRect textBounds;
-    textBounds.origin = CGPointMake(i*60+10,8.0);
+    textBounds.origin = CGPointMake(10,10);
+    if(useShapeCard)
+    {
+        textBounds.origin = CGPointMake(i*60+10,5.0);
+    }
     textBounds.size = [cornerText size];
     [cornerText drawInRect:textBounds];
 }
