@@ -12,5 +12,5 @@
 @property (strong, nonatomic) NSString *fill;
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *shape;
-
+@property (nonatomic) NSUInteger count;
 @end

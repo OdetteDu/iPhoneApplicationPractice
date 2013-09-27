@@ -19,9 +19,10 @@
 -(void)setSetCardView:(SetCardView *)setCardView
 {
     _setCardView=setCardView;
-    setCardView.fill=@"Solid";
+    setCardView.fill=@"Striped";
     setCardView.color=@"Red";
-    setCardView.shape=@"Squiggles";
+    setCardView.shape=@"Diamonds";
+    setCardView.count=3;
     
 }
 
