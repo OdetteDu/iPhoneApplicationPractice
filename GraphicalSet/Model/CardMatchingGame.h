@@ -25,7 +25,7 @@
 
 -(Card *)cardAtIndex:(NSUInteger)index;
 
--(void)addCards:(NSUInteger) numberOfCards;
+-(BOOL)addCard;
 
 -(void)removeCards: (NSArray *) indexes;
 

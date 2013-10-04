@@ -72,23 +72,23 @@
     return self;
 }
 
--(void)addCards:(NSUInteger) numberOfCards
+-(BOOL)addCard
 {
-    for (int i=0;i<numberOfCards;i++)
-    {
+    
         Card *card = [self.deck drawRandomCard];
         
         if(card)
         {
             [self.cards addObject:card];
+            return YES;
         }
         else
         {
-            self.deck=[self resetDeck];
-            card=[self.deck drawRandomCard];
-            [self.cards addObject:card];
+//            self.deck=[self resetDeck];
+//            card=[self.deck drawRandomCard];
+//            [self.cards addObject:card];
+            return NO;
         }
-    }
 }
 
 -(void)removeCards: (NSArray *) indexes

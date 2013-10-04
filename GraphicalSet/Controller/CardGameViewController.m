@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @property (weak, nonatomic) IBOutlet DescriptionView *descriptionView;
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
 @end
 
 @implementation CardGameViewController
@@ -111,6 +112,8 @@
 {
     self.game=nil;
     [self.cardCollectionView reloadData];
+    [self.addButton setEnabled:YES];
+    [self.addButton setHidden:NO];
     [self updateUI];
     
 }
@@ -119,8 +122,16 @@
 {
     for(int i=0;i<3;i++)
     {
-        [self.game addCards:1];
-        [self.cardCollectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0]]];
+        if([self.game addCard])
+        {
+            [self.cardCollectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0]]];
+        }
+        else
+        {
+            [sender setEnabled:NO];
+            [sender setHidden:YES];
+            break;
+        }
     }
     [self.cardCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.game.cards.count-1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
