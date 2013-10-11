@@ -18,6 +18,9 @@
 		846979D318079BD1000EE3DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846979D218079BD1000EE3DB /* Default-568h@2x.png */; };
 		846979D618079BD1000EE3DB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846979D418079BD1000EE3DB /* MainStoryboard.storyboard */; };
 		846979E318079C33000EE3DB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979E218079C33000EE3DB /* FlickrFetcher.m */; };
+		846979EA18088B71000EE3DB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979E918088B71000EE3DB /* CategoryTableViewController.m */; };
+		846979F5180896A6000EE3DB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979F4180896A6000EE3DB /* ImageViewController.m */; };
+		846979F818089BEC000EE3DB /* PhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979F718089BEC000EE3DB /* PhotoTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,12 @@
 		846979E018079C33000EE3DB /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
 		846979E118079C33000EE3DB /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
 		846979E218079C33000EE3DB /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
+		846979E818088B71000EE3DB /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableViewController.h; path = Controller/CategoryTableViewController.h; sourceTree = "<group>"; };
+		846979E918088B71000EE3DB /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controller/CategoryTableViewController.m; sourceTree = "<group>"; };
+		846979F3180896A6000EE3DB /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewController.h; path = Controller/ImageViewController.h; sourceTree = "<group>"; };
+		846979F4180896A6000EE3DB /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewController.m; path = Controller/ImageViewController.m; sourceTree = "<group>"; };
+		846979F618089BEC000EE3DB /* PhotoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoTableViewController.h; path = Controller/PhotoTableViewController.h; sourceTree = "<group>"; };
+		846979F718089BEC000EE3DB /* PhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoTableViewController.m; path = Controller/PhotoTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +93,8 @@
 		846979C218079BD0000EE3DB /* SPoT */ = {
 			isa = PBXGroup;
 			children = (
-				846979CB18079BD0000EE3DB /* AppDelegate.h */,
-				846979CC18079BD0000EE3DB /* AppDelegate.m */,
 				846979D418079BD1000EE3DB /* MainStoryboard.storyboard */,
+				846979E718088B2A000EE3DB /* Controller */,
 				846979DF18079C33000EE3DB /* FlickrFetcher */,
 				846979C318079BD0000EE3DB /* Supporting Files */,
 			);
@@ -96,6 +104,8 @@
 		846979C318079BD0000EE3DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				846979CB18079BD0000EE3DB /* AppDelegate.h */,
+				846979CC18079BD0000EE3DB /* AppDelegate.m */,
 				846979C418079BD0000EE3DB /* SPoT-Info.plist */,
 				846979C518079BD0000EE3DB /* InfoPlist.strings */,
 				846979C818079BD0000EE3DB /* main.m */,
@@ -115,6 +125,19 @@
 				846979E218079C33000EE3DB /* FlickrFetcher.m */,
 			);
 			path = FlickrFetcher;
+			sourceTree = "<group>";
+		};
+		846979E718088B2A000EE3DB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				846979E818088B71000EE3DB /* CategoryTableViewController.h */,
+				846979E918088B71000EE3DB /* CategoryTableViewController.m */,
+				846979F3180896A6000EE3DB /* ImageViewController.h */,
+				846979F4180896A6000EE3DB /* ImageViewController.m */,
+				846979F618089BEC000EE3DB /* PhotoTableViewController.h */,
+				846979F718089BEC000EE3DB /* PhotoTableViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +209,9 @@
 				846979C918079BD0000EE3DB /* main.m in Sources */,
 				846979CD18079BD0000EE3DB /* AppDelegate.m in Sources */,
 				846979E318079C33000EE3DB /* FlickrFetcher.m in Sources */,
+				846979EA18088B71000EE3DB /* CategoryTableViewController.m in Sources */,
+				846979F5180896A6000EE3DB /* ImageViewController.m in Sources */,
+				846979F818089BEC000EE3DB /* PhotoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
