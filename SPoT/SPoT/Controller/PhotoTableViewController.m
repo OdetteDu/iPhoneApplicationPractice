@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     //self.photos = [FlickrFetcher stanfordPhotos];
-    self.photos = [self.photoManager getPhotosWithCategory:@"library"];
+    self.photos = [self.photoManager getPhotosWithCategory:@"fountain"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -17,16 +17,29 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SPoT/Model/PhotoManager.m"
+         timestampString = "403475880.704135"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
+         landmarkName = "-parsePhotos"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SPoT/Model/PhotoManager.m"
-         timestampString = "403220207.478497"
+         timestampString = "403475880.704135"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "29"
-         endingLineNumber = "29"
-         landmarkName = "-getPhotosWithCategory:"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
+         landmarkName = "-parsePhotos"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

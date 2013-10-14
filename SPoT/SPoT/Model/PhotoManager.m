@@ -10,10 +10,21 @@
 #import "FlickrFetcher.h"
 
 @interface PhotoManager()
-@property (nonatomic, strong) NSArray *photos; // of NSDitionary 
+@property (nonatomic, strong) NSArray *photos; // of NSDitionary
+@property (nonatomic, strong) NSMutableDictionary *categories; //of NSArray of photos in that categories (photos is type of NSDitionary
 @end
 
 @implementation PhotoManager
+
+- (NSMutableDictionary *)categories
+{
+    if(!_categories)
+    {
+        _categories = [[NSMutableDictionary alloc] init];
+        [self parsePhotos];
+    }
+    return _categories;
+}
 
 - (NSArray *)photos
 {
@@ -23,17 +34,50 @@
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category
 {
-    NSMutableArray *photosInCategory=[[NSMutableArray alloc] init]; //of NSDictionary
-    for (int i=0;i<self.photos.count;i++)
+//    [self parsePhotos];
+//    NSMutableArray *photosInCategory=[[NSMutableArray alloc] init]; //of NSDictionary
+//    for (int i=0;i<self.photos.count;i++)
+//    {
+//        NSDictionary *photo=self.photos[i];
+//        NSString *tag=[photo[FLICKR_TAGS] description];
+//        if([tag rangeOfString:category].length != NSNotFound)
+//        {
+//            [photosInCategory addObject:photo];
+//            
+//        }
+//    }
+//    return photosInCategory;
+    return self.categories[category];
+}
+
+- (void)parsePhotos
+{
+    for(int i=0;i<self.photos.count;i++)
     {
         NSDictionary *photo=self.photos[i];
         NSString *tag=[photo[FLICKR_TAGS] description];
-        if([tag rangeOfString:category].length != NSNotFound)
+        NSArray *tags=[tag componentsSeparatedByString:@" "];
+        for(int j=0;j<tags.count;j++)
         {
-            [photosInCategory addObject:photo];
+            NSLog(@"%@",tags[j]);
+            NSString *currentTag=tags[j];
+            if([currentTag compare:@"cs193pspot"] && [currentTag compare:@"portrait"] && [currentTag compare:@"landscape"])
+            {
+                if( self.categories[currentTag] == nil)
+                {
+                    NSMutableArray *tempArray=[[NSMutableArray alloc] init];
+                    [tempArray addObject:photo];
+                    [self.categories setObject: tempArray forKey:currentTag];
+                }
+                else
+                {
+                    NSMutableArray *tempArray=self.categories[currentTag];
+                    [tempArray addObject:photo];
+                }
+            }
+            
         }
     }
-    return photosInCategory;
 }
 
 
