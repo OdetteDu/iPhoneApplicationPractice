@@ -10,6 +10,6 @@
 
 @interface CategoryTableViewController : UITableViewController
 
-
+@property (nonatomic, strong) NSArray *categories; // of NSDitionary
 
 @end

@@ -34,20 +34,32 @@
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category
 {
-//    [self parsePhotos];
-//    NSMutableArray *photosInCategory=[[NSMutableArray alloc] init]; //of NSDictionary
-//    for (int i=0;i<self.photos.count;i++)
-//    {
-//        NSDictionary *photo=self.photos[i];
-//        NSString *tag=[photo[FLICKR_TAGS] description];
-//        if([tag rangeOfString:category].length != NSNotFound)
-//        {
-//            [photosInCategory addObject:photo];
-//            
-//        }
-//    }
-//    return photosInCategory;
     return self.categories[category];
+}
+
+- (NSArray *)getCategoriesList
+{
+    NSMutableArray *list= [[NSMutableArray alloc] init];
+    NSEnumerator *enumerator = [self.categories keyEnumerator];
+    id key;
+    
+    while ((key = [enumerator nextObject]))
+    {
+        if([key isKindOfClass:[NSString class]])
+        {
+            NSString *temp=(NSString*)key;
+            [list addObject: temp];
+        }
+        
+    }
+    
+    return list;
+}
+
+- (NSUInteger)getCountForCategory: (NSString *)category
+{
+    NSArray *temp=self.categories[category];
+    return temp.count;
 }
 
 - (void)parsePhotos

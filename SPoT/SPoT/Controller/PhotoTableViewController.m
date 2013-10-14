@@ -8,20 +8,20 @@
 
 #import "PhotoTableViewController.h"
 #import "FlickrFetcher.h"
-#import "PhotoManager.h"
+//#import "PhotoManager.h"
 
 @interface PhotoTableViewController ()
-@property (strong, nonatomic) PhotoManager *photoManager;
+//@property (strong, nonatomic) PhotoManager *photoManager;
 
 @end
 
 @implementation PhotoTableViewController
 
-- (PhotoManager *)photoManager
-{
-    if(!_photoManager) _photoManager=[[PhotoManager alloc] init];
-    return _photoManager;
-}
+//- (PhotoManager *)photoManager
+//{
+//    if(!_photoManager) _photoManager=[[PhotoManager alloc] init];
+//    return _photoManager;
+//}
 
 - (void) setPhotos:(NSArray *)photos
 {
@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     //self.photos = [FlickrFetcher stanfordPhotos];
-    self.photos = [self.photoManager getPhotosWithCategory:@"fountain"];
+    //self.photos = [self.photoManager getPhotosWithCategory:@"fountain"];
 }
 
 - (void)didReceiveMemoryWarning

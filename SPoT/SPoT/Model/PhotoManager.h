@@ -11,5 +11,7 @@
 @interface PhotoManager : NSObject
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category;
+- (NSArray *)getCategoriesList;
+- (NSUInteger)getCountForCategory: (NSString *)category;
 
 @end
