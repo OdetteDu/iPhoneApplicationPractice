@@ -1,21 +1,20 @@
 //
-//  PhotoTableViewController.m
+//  RecentPhotoTableViewController.m
 //  SPoT
 //
-//  Created by Caidie on 10/11/13.
+//  Created by Caidie on 10/14/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
-#import "PhotoTableViewController.h"
+#import "RecentPhotoTableViewController.h"
 #import "FlickrFetcher.h"
 #import "RecentlyViewedPhotoSaver.h"
 
-@interface PhotoTableViewController ()
+@interface RecentPhotoTableViewController ()
 @property (strong, nonatomic) RecentlyViewedPhotoSaver *photoSaver;
-
 @end
 
-@implementation PhotoTableViewController
+@implementation RecentPhotoTableViewController
 
 - (RecentlyViewedPhotoSaver *)photoSaver
 {
@@ -42,7 +41,7 @@
 {
     [super viewDidLoad];
     //self.photos = [FlickrFetcher stanfordPhotos];
-    //self.photos = [self.photoManager getPhotosWithCategory:@"fountain"];
+    self.photos = [self.photoSaver getRecentlyViewedPhotos];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,5 +109,4 @@
     
     return cell;
 }
-
 @end

@@ -65,7 +65,6 @@
                 if ([segue.destinationViewController isKindOfClass:[PhotoTableViewController class]])
                 {
                     NSString *category=[sender textLabel].text;
-                    NSLog(@"%@", category);
                     PhotoTableViewController *photoTVC=(PhotoTableViewController *)segue.destinationViewController;
                     [photoTVC setPhotos:[self.photoManager getPhotosWithCategory:category]];
                     [segue.destinationViewController setTitle:category];

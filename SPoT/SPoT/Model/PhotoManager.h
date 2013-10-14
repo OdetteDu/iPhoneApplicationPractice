@@ -13,5 +13,7 @@
 - (NSArray *)getPhotosWithCategory: (NSString *) category;
 - (NSArray *)getCategoriesList;
 - (NSUInteger)getCountForCategory: (NSString *)category;
+//- (void) addRecentlyViewedPhoto: (NSDictionary *)photo;
+//- (NSArray *) getRecentlyViewedPhotos: (NSUInteger) count;
 
 @end

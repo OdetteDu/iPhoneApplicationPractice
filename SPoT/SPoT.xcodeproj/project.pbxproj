@@ -22,6 +22,8 @@
 		846979F5180896A6000EE3DB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979F4180896A6000EE3DB /* ImageViewController.m */; };
 		846979F818089BEC000EE3DB /* PhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979F718089BEC000EE3DB /* PhotoTableViewController.m */; };
 		846979FC18089D2B000EE3DB /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979FB18089D2B000EE3DB /* PhotoManager.m */; };
+		846979FF180C9EE0000EE3DB /* RecentPhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979FE180C9EE0000EE3DB /* RecentPhotoTableViewController.m */; };
+		84697A05180CA690000EE3DB /* RecentlyViewedPhotoSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 84697A04180CA690000EE3DB /* RecentlyViewedPhotoSaver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,10 @@
 		846979F718089BEC000EE3DB /* PhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoTableViewController.m; path = Controller/PhotoTableViewController.m; sourceTree = "<group>"; };
 		846979FA18089D2B000EE3DB /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManager.h; path = Model/PhotoManager.h; sourceTree = "<group>"; };
 		846979FB18089D2B000EE3DB /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManager.m; path = Model/PhotoManager.m; sourceTree = "<group>"; };
+		846979FD180C9EE0000EE3DB /* RecentPhotoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentPhotoTableViewController.h; path = Controller/RecentPhotoTableViewController.h; sourceTree = "<group>"; };
+		846979FE180C9EE0000EE3DB /* RecentPhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentPhotoTableViewController.m; path = Controller/RecentPhotoTableViewController.m; sourceTree = "<group>"; };
+		84697A03180CA690000EE3DB /* RecentlyViewedPhotoSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentlyViewedPhotoSaver.h; path = Model/RecentlyViewedPhotoSaver.h; sourceTree = "<group>"; };
+		84697A04180CA690000EE3DB /* RecentlyViewedPhotoSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentlyViewedPhotoSaver.m; path = Model/RecentlyViewedPhotoSaver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,8 @@
 				846979F4180896A6000EE3DB /* ImageViewController.m */,
 				846979F618089BEC000EE3DB /* PhotoTableViewController.h */,
 				846979F718089BEC000EE3DB /* PhotoTableViewController.m */,
+				846979FD180C9EE0000EE3DB /* RecentPhotoTableViewController.h */,
+				846979FE180C9EE0000EE3DB /* RecentPhotoTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -149,6 +157,8 @@
 			children = (
 				846979FA18089D2B000EE3DB /* PhotoManager.h */,
 				846979FB18089D2B000EE3DB /* PhotoManager.m */,
+				84697A03180CA690000EE3DB /* RecentlyViewedPhotoSaver.h */,
+				84697A04180CA690000EE3DB /* RecentlyViewedPhotoSaver.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -226,6 +236,8 @@
 				846979F5180896A6000EE3DB /* ImageViewController.m in Sources */,
 				846979F818089BEC000EE3DB /* PhotoTableViewController.m in Sources */,
 				846979FC18089D2B000EE3DB /* PhotoManager.m in Sources */,
+				846979FF180C9EE0000EE3DB /* RecentPhotoTableViewController.m in Sources */,
+				84697A05180CA690000EE3DB /* RecentlyViewedPhotoSaver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

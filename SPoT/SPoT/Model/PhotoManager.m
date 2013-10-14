@@ -12,9 +12,18 @@
 @interface PhotoManager()
 @property (nonatomic, strong) NSArray *photos; // of NSDitionary
 @property (nonatomic, strong) NSMutableDictionary *categories; //of NSArray of photos in that categories (photos is type of NSDitionary
+//@property (nonatomic, strong) NSMutableArray *recentPhotos;
 @end
 
 @implementation PhotoManager
+
+
+
+//- (NSMutableArray *)recentPhotos
+//{
+//    if(!_recentPhotos) _recentPhotos=[[NSMutableArray alloc]init];
+//    return _recentPhotos;
+//}
 
 - (NSMutableDictionary *)categories
 {
@@ -31,6 +40,25 @@
     if(!_photos) _photos = [FlickrFetcher stanfordPhotos];
     return _photos;
 }
+
+//- (void) addRecentlyViewedPhoto: (NSDictionary *)photo
+//{
+//    NSLog(@"%@",[photo[FLICKR_PHOTO_TITLE] description]);
+//    [self.recentPhotos addObject:photo];
+//}
+//
+//- (NSArray *) getRecentlyViewedPhotos: (NSUInteger) count
+//{
+//    NSMutableArray *photos=[[NSMutableArray alloc] init];
+//    NSUInteger index= count<self.recentPhotos.count ? count : self.recentPhotos.count;
+//
+//    while (index>0)
+//    {
+//        [photos addObject:self.recentPhotos[index-1]];
+//        index--;
+//    }
+//    return photos;
+//}
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category
 {
@@ -71,7 +99,6 @@
         NSArray *tags=[tag componentsSeparatedByString:@" "];
         for(int j=0;j<tags.count;j++)
         {
-            NSLog(@"%@",tags[j]);
             NSString *currentTag=tags[j];
             if([currentTag compare:@"cs193pspot"] && [currentTag compare:@"portrait"] && [currentTag compare:@"landscape"])
             {
