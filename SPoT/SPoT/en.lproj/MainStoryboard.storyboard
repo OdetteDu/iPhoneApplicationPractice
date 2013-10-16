@@ -212,11 +212,11 @@
             </objects>
             <point key="canvasLocation" x="2586" y="518"/>
         </scene>
-        <!--Navigation Controller - All-->
+        <!--Navigation Controller-->
         <scene sceneID="jId-b3-1JV">
             <objects>
                 <navigationController id="1zp-gh-boZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All" id="U7T-gD-wiJ"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="U7T-gD-wiJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dkl-Zj-ehU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -231,11 +231,11 @@
             </objects>
             <point key="canvasLocation" x="1042" y="-94"/>
         </scene>
-        <!--Navigation Controller - Recent-->
+        <!--Navigation Controller-->
         <scene sceneID="cRA-cP-WUf">
             <objects>
                 <navigationController id="ho6-BZ-c7e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recent" id="5MR-90-4pZ"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="5MR-90-4pZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="C8e-v5-AEb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

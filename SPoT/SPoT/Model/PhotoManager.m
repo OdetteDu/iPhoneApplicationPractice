@@ -102,6 +102,7 @@
             NSString *currentTag=tags[j];
             if([currentTag compare:@"cs193pspot"] && [currentTag compare:@"portrait"] && [currentTag compare:@"landscape"])
             {
+                currentTag = [currentTag capitalizedString];
                 if( self.categories[currentTag] == nil)
                 {
                     NSMutableArray *tempArray=[[NSMutableArray alloc] init];
