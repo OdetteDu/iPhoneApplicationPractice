@@ -109,4 +109,11 @@
     
     return cell;
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.photos = [self.photoSaver getRecentlyViewedPhotos];
+}
+
 @end

@@ -8,7 +8,7 @@
         <scene sceneID="R7Y-Ar-qvq">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="LYY-l7-FY5" customClass="MainViewController" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ddt-E1-hh4">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -170,7 +170,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="8hK-yD-kYr" kind="push" identifier="Show Image" id="V1v-SF-pp2"/>
+                                    <segue destination="8hK-yD-kYr" kind="push" identifier="Show Image" id="6As-rq-Kz4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -204,6 +204,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U1h-d8-cec"/>
+                    <connections>
+                        <outlet property="scorllView" destination="1tZ-OV-WuK" id="sWO-0K-6h9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dba-Lw-80L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,6 +251,26 @@
             <point key="canvasLocation" x="1568" y="518"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CategoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CategoryTableViewController.h"/>
+        </class>
+        <class className="ImageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scorllView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PhotoTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoTableViewController.h"/>
+        </class>
+        <class className="RecentPhotoTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPhotoTableViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

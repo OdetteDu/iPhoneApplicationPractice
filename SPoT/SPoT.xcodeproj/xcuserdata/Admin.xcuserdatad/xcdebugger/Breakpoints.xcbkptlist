@@ -7,19 +7,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "SPoT/Controller/RecentPhotoTableViewController.m"
-         timestampString = "403582766.788486"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
-         landmarkName = "-prepareForSegue:sender:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "SPoT/Controller/PhotoTableViewController.m"
          timestampString = "403582774.855957"
          startingColumnNumber = "9223372036854775807"
@@ -30,29 +17,29 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SPoT/Controller/RecentPhotoTableViewController.m"
-         timestampString = "403582935.88181"
+         timestampString = "403587016.345656"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "SPoT/Model/RecentlyViewedPhotoSaver.m"
-         timestampString = "403585808.896337"
+         filePath = "SPoT/Controller/RecentPhotoTableViewController.m"
+         timestampString = "403587073.460678"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
-         landmarkName = "-addRecentlyViewedPhoto:"
+         startingLineNumber = "77"
+         endingLineNumber = "77"
+         landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
