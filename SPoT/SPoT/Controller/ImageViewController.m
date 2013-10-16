@@ -41,6 +41,23 @@
     }
 }
 
+- (void) viewDidLayoutSubviews
+{
+    CGRect target = self.scorllView.bounds;
+    CGSize source = self.imageView.image.size;
+    
+    if(target.size.width > target.size.height)
+    {
+        self.scorllView.zoomScale=target.size.width/source.width;
+        self.scorllView.minimumZoomScale = target.size.height/source.height;
+    }
+    else
+    {
+        self.scorllView.zoomScale=target.size.height/source.height;
+        self.scorllView.minimumZoomScale = target.size.width/source.width;
+    }
+}
+
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.imageView;
