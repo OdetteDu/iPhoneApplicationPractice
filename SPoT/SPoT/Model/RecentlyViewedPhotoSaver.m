@@ -9,51 +9,72 @@
 #import "RecentlyViewedPhotoSaver.h"
 #import "FlickrFetcher.h"
 @interface RecentlyViewedPhotoSaver()
-@property (nonatomic, strong) NSMutableArray *recentPhotos;
+//@property (nonatomic, strong) NSMutableArray *recentPhotos;
+@property (nonatomic, strong) NSMutableArray *recentPhotoIds;//of NSString
 @end
 
 @implementation RecentlyViewedPhotoSaver
 
-- (NSMutableArray *)recentPhotos
+- (NSMutableArray *)recentPhotoIds
 {
-    if(!_recentPhotos) _recentPhotos=[[NSMutableArray alloc]init];
-    return _recentPhotos;
+    if(!_recentPhotoIds) _recentPhotoIds=[[NSMutableArray alloc]init];
+    return _recentPhotoIds;
 }
 
 - (void) addRecentlyViewedPhoto: (NSDictionary *)photo
 {
-    [self synchronize];
+    [self readFromDisk];
     
-    for(int i=0;i<self.recentPhotos.count;i++)
+    for(int i=0;i<self.recentPhotoIds.count;i++)
     {
-        if(self.recentPhotos[i][FLICKR_PHOTO_ID]==photo[FLICKR_PHOTO_ID])
+        if([self.recentPhotoIds[i] compare: photo[FLICKR_PHOTO_ID]]==0)
         {
-            [self.recentPhotos removeObject:self.recentPhotos[i]];
+            [self.recentPhotoIds removeObject:self.recentPhotoIds[i]];
             break;
         }
     }
 
-    [self.recentPhotos addObject:photo];
+    [self.recentPhotoIds addObject:photo[FLICKR_PHOTO_ID]];
     
-    [self synchronize];
+    if(self.recentPhotoIds.count > RECENTLY_VIEWED_PHOTO_CAPACITY)
+    {
+        [self.recentPhotoIds removeObjectAtIndex:0];
+    }
+    
+    [self saveToDisk];
 }
 
 - (NSArray *) getRecentlyViewedPhotos
 {
-    [self synchronize];
+    [self readFromDisk];
     
+    NSArray *photos= [FlickrFetcher stanfordPhotos];
     NSMutableArray *list=[[NSMutableArray alloc]init];
-    for (int i=self.recentPhotos.count-1;i>=0;i--)
+    for (int i=self.recentPhotoIds.count-1;i>=0;i--)
     {
-        [list addObject:self.recentPhotos[i]];
+        for (int j=0;j<photos.count;j++)
+        {
+            if([photos[j][FLICKR_PHOTO_ID] compare: self.recentPhotoIds[i]]==0)
+            {
+                [list addObject:photos[j]];
+                break;
+            }
+        }
+        
     }
     
     return list;
 }
 
-- (void) synchronize
+- (void) saveToDisk
 {
-    
+    [[NSUserDefaults standardUserDefaults] setObject:self.recentPhotoIds forKey:RECENTLY_VIEWED_PHOTO_KEY ];
+    [[NSUserDefaults standardUserDefaults] synchronize]; 
+}
+
+- (void) readFromDisk
+{
+    self.recentPhotoIds = [[[NSUserDefaults standardUserDefaults] arrayForKey:RECENTLY_VIEWED_PHOTO_KEY ] mutableCopy];
 }
 
 @end

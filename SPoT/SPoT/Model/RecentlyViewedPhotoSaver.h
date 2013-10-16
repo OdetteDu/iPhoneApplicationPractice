@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define RECENTLY_VIEWED_PHOTO_CAPACITY 5
+#define RECENTLY_VIEWED_PHOTO_KEY @"Recently_Viewed_Photo_Key"
 
 @interface RecentlyViewedPhotoSaver : NSObject
 - (void) addRecentlyViewedPhoto: (NSDictionary *)photo;
