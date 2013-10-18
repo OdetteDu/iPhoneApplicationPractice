@@ -23,9 +23,15 @@
     self.titleBarButtonItem.title=title;
 }
 
-- (void)setImageURL:(NSURL *)imageURL
+//- (void)setImageURL:(NSURL *)imageURL
+//{
+//    _imageURL = imageURL;
+//    [self resetImage];
+//}
+
+- (void)setImageData:(NSData *)imageData
 {
-    _imageURL = imageURL;
+    _imageData = imageData;
     [self resetImage];
 }
 
@@ -37,18 +43,23 @@
         self.imageView.image = nil;
         
         [self.spinner startAnimating];
-        NSURL *imageURL = self.imageURL;
+//        NSURL *imageURL = self.imageURL;
+        
         dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
         dispatch_async(imageFetchQ, ^{
             
             [NSThread sleepForTimeInterval:2.0];
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
             
-            if(self.imageURL == imageURL)
-            {
+//            if(!self.imageData)
+//            {
+//                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//                self.imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
+//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//            }
+            UIImage *image = [[UIImage alloc] initWithData:self.imageData];
+            
+//            if(self.imageURL == imageURL)
+//            {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (image)
                     {
@@ -59,7 +70,7 @@
                     }
                     [self.spinner stopAnimating];
                 });
-            }
+//            }
             
         });
         

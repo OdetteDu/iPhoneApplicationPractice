@@ -9,6 +9,7 @@
 #import "PhotoTableViewController.h"
 #import "FlickrFetcher.h"
 #import "RecentlyViewedPhotoSaver.h"
+#import "ImageViewController.h"
 
 @interface PhotoTableViewController ()
 @property (strong, nonatomic) RecentlyViewedPhotoSaver *photoSaver;
@@ -73,21 +74,38 @@
         {
             if([segue.identifier isEqualToString:@"Show Image"])
             {
-                if([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
+                if([segue.destinationViewController isKindOfClass:[ImageViewController class]])
                 {
+                    ImageViewController *ivc=(ImageViewController *)(segue.destinationViewController);
+                    
                     NSString *imageTitle=[sender textLabel].text;
                     NSString *imageDescription=[sender detailTextLabel].text;
+                    
+                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
+                    
+                    NSDictionary *currentPhoto;
                     for(int i=0;i<self.photos.count;i++)
                     {
                         if([[self.photos[i][FLICKR_PHOTO_TITLE] description] compare: imageTitle]==0 &&
                            [[self.photos[i][@"description"][FLICKR_PLACE_NAME] description] compare: imageDescription]==0)
                         {
+                            currentPhoto=self.photos[i];
                             [self.photoSaver addRecentlyViewedPhoto:self.photos[i]];
                         }
                     }
                     
-                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
-                    [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                    NSData *imageData=[self.photoSaver getCachedPhoto: currentPhoto[FLICKR_PHOTO_ID]];
+                    if(!imageData)
+                    {
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                        imageData = [[NSData alloc] initWithContentsOfURL:url];
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    }
+                    [ivc setImageData:imageData];
+                    
+                    //[segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                    //[ivc setImageURL:url];
+                    
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
                 }
             }

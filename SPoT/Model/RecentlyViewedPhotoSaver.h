@@ -14,5 +14,6 @@
 @interface RecentlyViewedPhotoSaver : NSObject
 - (void) addRecentlyViewedPhoto: (NSDictionary *)photo;
 - (NSArray *) getRecentlyViewedPhotos;
+- (NSData *) getCachedPhoto: (NSString *)photoID;
 
 @end

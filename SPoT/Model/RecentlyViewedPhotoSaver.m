@@ -11,9 +11,16 @@
 @interface RecentlyViewedPhotoSaver()
 //@property (nonatomic, strong) NSMutableArray *recentPhotos;
 @property (nonatomic, strong) NSMutableArray *recentPhotoIds;//of NSString
+@property (nonatomic, strong) NSFileManager *fileManager;
 @end
 
 @implementation RecentlyViewedPhotoSaver
+
+-(NSFileManager *)fileManager
+{
+    if(!_fileManager)_fileManager=[[NSFileManager alloc] init];
+    return _fileManager;
+}
 
 - (NSMutableArray *)recentPhotoIds
 {
@@ -42,6 +49,11 @@
     }
     
     [self saveToDisk];
+    
+    NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
+    
+    [self savePhoto:photo[FLICKR_PHOTO_ID] withData:imageData];
 }
 
 - (NSArray *) getRecentlyViewedPhotos
@@ -75,6 +87,25 @@
 - (void) readFromDisk
 {
     self.recentPhotoIds = [[[NSUserDefaults standardUserDefaults] arrayForKey:RECENTLY_VIEWED_PHOTO_KEY ] mutableCopy];
+}
+
+- (void) savePhoto:(NSString *)photoID withData:(NSData *)data
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    [data writeToURL:url atomically:YES];
+}
+
+- (NSData *) loadPhoto: (NSString *)photoID
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    return [NSData dataWithContentsOfURL:url];
+}
+
+- (NSData *) getCachedPhoto: (NSString *)photoID
+{
+    return [self loadPhoto:photoID];
 }
 
 @end
