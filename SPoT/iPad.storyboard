@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="yPE-Ma-hMF">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="hyZ-yD-bwS" customClass="MainViewController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="hyZ-yD-bwS" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="usg-Fg-JxN">
@@ -95,6 +95,7 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="955"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SU3-8L-Bx3"/>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Tw-Le-2nS"/>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SIA-Wi-HmN">
                                 <items>
@@ -108,8 +109,10 @@
                         <constraints>
                             <constraint firstItem="0Tw-Le-2nS" firstAttribute="leading" secondItem="B3h-vG-rpl" secondAttribute="leading" type="default" id="MmZ-h5-KWz"/>
                             <constraint firstItem="0Tw-Le-2nS" firstAttribute="top" secondItem="SIA-Wi-HmN" secondAttribute="bottom" type="default" id="Ujl-Z4-xtT"/>
+                            <constraint firstAttribute="centerY" secondItem="SU3-8L-Bx3" secondAttribute="centerY" type="user" id="VMX-O6-PXU"/>
                             <constraint firstItem="SIA-Wi-HmN" firstAttribute="trailing" secondItem="B3h-vG-rpl" secondAttribute="trailing" type="default" id="ZpD-bn-1Dj"/>
                             <constraint firstItem="0Tw-Le-2nS" firstAttribute="trailing" secondItem="B3h-vG-rpl" secondAttribute="trailing" type="default" id="e0s-5L-Vvj"/>
+                            <constraint firstAttribute="centerX" secondItem="SU3-8L-Bx3" secondAttribute="centerX" type="user" id="j97-o8-lVW"/>
                             <constraint firstItem="SIA-Wi-HmN" firstAttribute="top" secondItem="B3h-vG-rpl" secondAttribute="top" type="default" id="je3-41-e1c"/>
                             <constraint firstItem="SIA-Wi-HmN" firstAttribute="leading" secondItem="B3h-vG-rpl" secondAttribute="leading" type="default" id="tvI-hF-BWS"/>
                             <constraint firstItem="0Tw-Le-2nS" firstAttribute="bottom" secondItem="B3h-vG-rpl" secondAttribute="bottom" type="default" id="uN6-jU-P5V"/>
@@ -119,6 +122,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="scorllView" destination="0Tw-Le-2nS" id="zVp-UE-dgE"/>
+                        <outlet property="spinner" destination="SU3-8L-Bx3" id="iJf-UA-Aw2"/>
                         <outlet property="titleBarButtonItem" destination="fbK-6b-H8D" id="EsA-je-x80"/>
                     </connections>
                 </viewController>
@@ -237,6 +241,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="iF6-Ua-PGq"/>
                                 </items>
                             </toolbar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IEw-ew-wy3"/>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-Yq-xzQ"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -246,14 +251,17 @@
                             <constraint firstItem="fLf-Yq-xzQ" firstAttribute="leading" secondItem="e1m-VH-HOA" secondAttribute="leading" type="default" id="8uu-jN-Fdt"/>
                             <constraint firstItem="AYZ-Sz-j5u" firstAttribute="trailing" secondItem="e1m-VH-HOA" secondAttribute="trailing" type="default" id="E9Q-Ut-oFJ"/>
                             <constraint firstItem="AYZ-Sz-j5u" firstAttribute="bottom" secondItem="fLf-Yq-xzQ" secondAttribute="top" type="default" id="Jqe-os-6QS"/>
+                            <constraint firstAttribute="centerY" secondItem="IEw-ew-wy3" secondAttribute="centerY" type="user" id="fkg-Z6-Nej"/>
                             <constraint firstItem="fLf-Yq-xzQ" firstAttribute="bottom" secondItem="e1m-VH-HOA" secondAttribute="bottom" type="default" id="qq7-tO-GWH"/>
                             <constraint firstItem="AYZ-Sz-j5u" firstAttribute="top" secondItem="e1m-VH-HOA" secondAttribute="top" type="default" id="uN5-ey-Zr2"/>
+                            <constraint firstAttribute="centerX" secondItem="IEw-ew-wy3" secondAttribute="centerX" type="user" id="zjF-Mx-Jsm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mjo-my-YZZ"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
                         <outlet property="scorllView" destination="fLf-Yq-xzQ" id="k4j-9m-fRX"/>
+                        <outlet property="spinner" destination="IEw-ew-wy3" id="ony-JU-hUE"/>
                         <outlet property="titleBarButtonItem" destination="iIr-HA-Udk" id="pPp-TJ-Ywv"/>
                     </connections>
                 </viewController>
@@ -325,6 +333,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="scorllView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="titleBarButtonItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
