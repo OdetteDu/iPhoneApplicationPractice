@@ -84,12 +84,12 @@
     
     if(target.size.width > target.size.height)
     {
-        self.scorllView.zoomScale=target.size.width/source.width;
+        self.scorllView.zoomScale=target.size.height/source.height;
         self.scorllView.minimumZoomScale = target.size.height/source.height;
     }
     else
     {
-        self.scorllView.zoomScale=target.size.height/source.height;
+        self.scorllView.zoomScale=target.size.width/source.width;
         self.scorllView.minimumZoomScale = target.size.width/source.width;
     }
 }

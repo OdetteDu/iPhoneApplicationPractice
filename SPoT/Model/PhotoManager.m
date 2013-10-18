@@ -43,7 +43,16 @@
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category
 {
-    return self.categories[category];
+    NSArray *result=self.categories[category];
+    
+    result = [result sortedArrayUsingComparator:^(id obj1, id obj2) {
+        
+        NSString *s1=[((NSDictionary *)obj1)[FLICKR_PHOTO_TITLE] description];
+        NSString *s2=[((NSDictionary *)obj2)[FLICKR_PHOTO_TITLE] description];
+        return [s1 caseInsensitiveCompare:s2];
+    }];
+    
+    return result;
 }
 
 - (NSArray *)getCategoriesList
@@ -62,7 +71,12 @@
         
     }
     
-    
+    [list sortUsingComparator: ^(id obj1, id obj2) {
+        
+        NSString *s1=(NSString *)obj1;
+        NSString *s2=(NSString *)obj2;
+        return [s1 compare:s2];
+    }];
     
     return list;
 }

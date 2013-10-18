@@ -81,32 +81,45 @@
                     NSString *imageTitle=[sender textLabel].text;
                     NSString *imageDescription=[sender detailTextLabel].text;
                     
-                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
+                    dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
+                    dispatch_async(imageFetchQ, ^{
                     
-                    NSDictionary *currentPhoto;
-                    for(int i=0;i<self.photos.count;i++)
-                    {
-                        if([[self.photos[i][FLICKR_PHOTO_TITLE] description] compare: imageTitle]==0 &&
-                           [[self.photos[i][@"description"][FLICKR_PLACE_NAME] description] compare: imageDescription]==0)
+                        NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
+                        
+                        NSDictionary *currentPhoto;
+                        for(int i=0;i<self.photos.count;i++)
                         {
-                            currentPhoto=self.photos[i];
-                            [self.photoSaver addRecentlyViewedPhoto:self.photos[i]];
+                            if([[self.photos[i][FLICKR_PHOTO_TITLE] description] compare: imageTitle]==0 &&
+                               [[self.photos[i][@"description"][FLICKR_PLACE_NAME] description] compare: imageDescription]==0)
+                            {
+                                currentPhoto=self.photos[i];
+                                [self.photoSaver addRecentlyViewedPhoto:self.photos[i]];
+                            }
                         }
-                    }
+                        
+                        NSData *imageData=[self.photoSaver getCachedPhoto: currentPhoto[FLICKR_PHOTO_ID]];
+                        if(!imageData)
+                        {
+                            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                            imageData = [[NSData alloc] initWithContentsOfURL:url];
+                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                            [ivc setImageData:imageData];
+                            
+                            //[segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                            //[ivc setImageURL:url];
+                            
+                            [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
+                            
+                        });
+                        
                     
-                    NSData *imageData=[self.photoSaver getCachedPhoto: currentPhoto[FLICKR_PHOTO_ID]];
-                    if(!imageData)
-                    {
-                        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-                        imageData = [[NSData alloc] initWithContentsOfURL:url];
-                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                    }
-                    [ivc setImageData:imageData];
+                    });
                     
-                    //[segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
-                    //[ivc setImageURL:url];
                     
-                    [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
                 }
             }
         }
