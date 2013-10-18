@@ -10,11 +10,21 @@
 #import "FlickrFetcher.h"
 #import "RecentlyViewedPhotoSaver.h"
 
-@interface RecentPhotoTableViewController ()
+@interface RecentPhotoTableViewController () <UISplitViewControllerDelegate>
 @property (strong, nonatomic) RecentlyViewedPhotoSaver *photoSaver;
 @end
 
 @implementation RecentPhotoTableViewController
+
+- (void)awakeFromNib
+{
+    self.splitViewController.delegate=self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
 
 - (RecentlyViewedPhotoSaver *)photoSaver
 {
@@ -42,6 +52,17 @@
     [super viewDidLoad];
     //self.photos = [FlickrFetcher stanfordPhotos];
     self.photos = [self.photoSaver getRecentlyViewedPhotos];
+    [self loadLatestPhotosFromFlickr];
+    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)loadLatestPhotosFromFlickr
+{
+    [self.refreshControl beginRefreshing];
+    dispatch_queue_t loaderQ = dispatch_queue_create("flickr latest loader", NULL);
+    dispatch_async(loaderQ, ^{
+        [self.refreshControl endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning

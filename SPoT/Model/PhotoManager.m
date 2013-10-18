@@ -17,13 +17,11 @@
 
 @implementation PhotoManager
 
-
-
-//- (NSMutableArray *)recentPhotos
-//{
-//    if(!_recentPhotos) _recentPhotos=[[NSMutableArray alloc]init];
-//    return _recentPhotos;
-//}
+- (void) reset
+{
+    self.photos = nil;
+    self.categories = nil;
+}
 
 - (NSMutableDictionary *)categories
 {
@@ -37,28 +35,11 @@
 
 - (NSArray *)photos
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if(!_photos) _photos = [FlickrFetcher stanfordPhotos];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     return _photos;
 }
-
-//- (void) addRecentlyViewedPhoto: (NSDictionary *)photo
-//{
-//    NSLog(@"%@",[photo[FLICKR_PHOTO_TITLE] description]);
-//    [self.recentPhotos addObject:photo];
-//}
-//
-//- (NSArray *) getRecentlyViewedPhotos: (NSUInteger) count
-//{
-//    NSMutableArray *photos=[[NSMutableArray alloc] init];
-//    NSUInteger index= count<self.recentPhotos.count ? count : self.recentPhotos.count;
-//
-//    while (index>0)
-//    {
-//        [photos addObject:self.recentPhotos[index-1]];
-//        index--;
-//    }
-//    return photos;
-//}
 
 - (NSArray *)getPhotosWithCategory: (NSString *) category
 {

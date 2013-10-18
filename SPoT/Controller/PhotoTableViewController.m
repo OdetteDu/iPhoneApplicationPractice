@@ -43,6 +43,17 @@
     [super viewDidLoad];
     //self.photos = [FlickrFetcher stanfordPhotos];
     //self.photos = [self.photoManager getPhotosWithCategory:@"fountain"];
+    [self loadLatestPhotosFromFlickr];
+    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)loadLatestPhotosFromFlickr
+{
+    [self.refreshControl beginRefreshing];
+    dispatch_queue_t loaderQ = dispatch_queue_create("flickr latest loader", NULL);
+    dispatch_async(loaderQ, ^{
+        [self.refreshControl endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning

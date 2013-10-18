@@ -52,7 +52,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.categories = [self.photoManager getCategoriesList];
+    //self.categories = [self.photoManager getCategoriesList];
+    [self loadLatestPhotosFromFlickr];
+    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)loadLatestPhotosFromFlickr
+{
+    [self.refreshControl beginRefreshing];
+    dispatch_queue_t loaderQ = dispatch_queue_create("flickr latest loader", NULL);
+    dispatch_async(loaderQ, ^{
+       [self.photoManager reset];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.categories = [self.photoManager getCategoriesList];
+            [self.refreshControl endRefreshing];
+        });
+        
+    });
 }
 
 - (void)didReceiveMemoryWarning
