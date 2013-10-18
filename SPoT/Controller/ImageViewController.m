@@ -11,10 +11,17 @@
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scorllView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *titleBarButtonItem;
 
 @end
 
 @implementation ImageViewController
+
+- (void)setTitle:(NSString *)title
+{
+    super.title=title;
+    self.titleBarButtonItem.title=title;
+}
 
 - (void)setImageURL:(NSURL *)imageURL
 {
@@ -79,6 +86,7 @@
     self.scorllView.maximumZoomScale = 5.0;
     self.scorllView.delegate = self;
 	[self resetImage];
+    self.titleBarButtonItem.title=self.title;
 }
 
 

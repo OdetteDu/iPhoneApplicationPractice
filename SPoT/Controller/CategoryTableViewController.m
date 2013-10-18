@@ -11,12 +11,22 @@
 #import "PhotoManager.h"
 #import "PhotoTableViewController.h"
 
-@interface CategoryTableViewController ()
+@interface CategoryTableViewController () <UISplitViewControllerDelegate>
 @property (strong, nonatomic) PhotoManager *photoManager;
 
 @end
 
 @implementation CategoryTableViewController
+
+- (void)awakeFromNib
+{
+    self.splitViewController.delegate=self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
 
 - (PhotoManager *)photoManager
 {
