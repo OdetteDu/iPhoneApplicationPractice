@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8466583E1810EF6E00B51955 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8466583D1810EF6E00B51955 /* iPad.storyboard */; };
 		846979BD18079BD0000EE3DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846979BC18079BD0000EE3DB /* UIKit.framework */; };
 		846979BF18079BD0000EE3DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846979BE18079BD0000EE3DB /* Foundation.framework */; };
 		846979C118079BD0000EE3DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846979C018079BD0000EE3DB /* CoreGraphics.framework */; };
@@ -16,7 +17,7 @@
 		846979CF18079BD0000EE3DB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 846979CE18079BD0000EE3DB /* Default.png */; };
 		846979D118079BD1000EE3DB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846979D018079BD0000EE3DB /* Default@2x.png */; };
 		846979D318079BD1000EE3DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846979D218079BD1000EE3DB /* Default-568h@2x.png */; };
-		846979D618079BD1000EE3DB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846979D418079BD1000EE3DB /* MainStoryboard.storyboard */; };
+		846979D618079BD1000EE3DB /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846979D418079BD1000EE3DB /* iPhone.storyboard */; };
 		846979E318079C33000EE3DB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979E218079C33000EE3DB /* FlickrFetcher.m */; };
 		846979EA18088B71000EE3DB /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979E918088B71000EE3DB /* CategoryTableViewController.m */; };
 		846979F5180896A6000EE3DB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846979F4180896A6000EE3DB /* ImageViewController.m */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8466583D1810EF6E00B51955 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		846979B918079BD0000EE3DB /* SPoT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPoT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846979BC18079BD0000EE3DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		846979BE18079BD0000EE3DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,7 +42,7 @@
 		846979CE18079BD0000EE3DB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		846979D018079BD0000EE3DB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		846979D218079BD1000EE3DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		846979D518079BD1000EE3DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		846979D518079BD1000EE3DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		846979E018079C33000EE3DB /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
 		846979E118079C33000EE3DB /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
 		846979E218079C33000EE3DB /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
@@ -102,7 +104,8 @@
 		846979C218079BD0000EE3DB /* SPoT */ = {
 			isa = PBXGroup;
 			children = (
-				846979D418079BD1000EE3DB /* MainStoryboard.storyboard */,
+				8466583D1810EF6E00B51955 /* iPad.storyboard */,
+				846979D418079BD1000EE3DB /* iPhone.storyboard */,
 				846979E718088B2A000EE3DB /* Controller */,
 				846979F918089CE4000EE3DB /* Model */,
 				846979DF18079C33000EE3DB /* FlickrFetcher */,
@@ -218,7 +221,8 @@
 				846979CF18079BD0000EE3DB /* Default.png in Resources */,
 				846979D118079BD1000EE3DB /* Default@2x.png in Resources */,
 				846979D318079BD1000EE3DB /* Default-568h@2x.png in Resources */,
-				846979D618079BD1000EE3DB /* MainStoryboard.storyboard in Resources */,
+				846979D618079BD1000EE3DB /* iPhone.storyboard in Resources */,
+				8466583E1810EF6E00B51955 /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,12 +256,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		846979D418079BD1000EE3DB /* MainStoryboard.storyboard */ = {
+		846979D418079BD1000EE3DB /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				846979D518079BD1000EE3DB /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -325,7 +329,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPoT/SPoT-Prefix.pch";
 				INFOPLIST_FILE = "SPoT/SPoT-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -336,7 +342,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPoT/SPoT-Prefix.pch";
 				INFOPLIST_FILE = "SPoT/SPoT-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
