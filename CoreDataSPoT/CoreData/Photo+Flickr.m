@@ -34,8 +34,10 @@
         photo.unique = [photoDictionary[FLICKR_PHOTO_ID] description];
         photo.title = [photoDictionary[FLICKR_PHOTO_TITLE] description];
         photo.subtitle = [photoDictionary valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         photo.imageURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         photo.thumbnailURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
         NSString *tag=[photoDictionary[FLICKR_TAGS] description];
         NSArray *tags=[tag componentsSeparatedByString:@" "];

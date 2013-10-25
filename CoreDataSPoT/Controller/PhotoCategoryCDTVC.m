@@ -12,11 +12,21 @@
 #import "Photo+Flickr.h"
 #import "PhotosByCategoryCDTVC.h"
 
-@interface PhotoCategoryCDTVC ()
+@interface PhotoCategoryCDTVC () <UISplitViewControllerDelegate>
 
 @end
 
 @implementation PhotoCategoryCDTVC
+
+- (void)awakeFromNib
+{
+    self.splitViewController.delegate=self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -81,7 +91,9 @@
     [self.refreshControl beginRefreshing];
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
     dispatch_async(fetchQ, ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSArray *photos = [FlickrFetcher stanfordPhotos];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         // put the photos in Core Data
         [self.managedObjectContext performBlock:^{
             for (NSDictionary *photo in photos)

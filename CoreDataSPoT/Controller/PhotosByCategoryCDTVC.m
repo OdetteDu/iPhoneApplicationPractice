@@ -9,12 +9,33 @@
 #import "PhotosByCategoryCDTVC.h"
 #import "Photo.h"
 #import "FlickrFetcher.h"
+#import "ImageViewController.h"
 
 @interface PhotosByCategoryCDTVC ()
-
+@property (nonatomic, strong) NSFileManager *fileManager;
 @end
 
 @implementation PhotosByCategoryCDTVC
+
+-(NSFileManager *)fileManager
+{
+    if(!_fileManager)_fileManager=[[NSFileManager alloc] init];
+    return _fileManager;
+}
+
+- (void) savePhoto:(NSString *)photoID withData:(NSData *)data
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    [data writeToURL:url atomically:YES];
+}
+
+- (NSData *) loadPhoto: (NSString *)photoID
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    return [NSData dataWithContentsOfURL:url];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -29,17 +50,34 @@
         if ([segue.identifier isEqualToString:@"Show Image"])
         {
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
             
-            if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
-            {
-                [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
-                [segue.destinationViewController setTitle:photo.title];
-            }
-            
-            photo.lastAccessDate = [NSDate date];
-            
-            [self.photoCategory.managedObjectContext save:nil];
+            dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
+            dispatch_async(imageFetchQ, ^{
+                
+                NSData *imageData = [self loadPhoto:photo.unique];
+                if(!imageData)
+                {
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                    NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    imageData = [[NSData alloc] initWithContentsOfURL:url];
+                    [self savePhoto:photo.unique withData:imageData];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if ([segue.destinationViewController respondsToSelector:@selector(setImageData:)])
+                    {
+                        [segue.destinationViewController performSelector:@selector(setImageData:) withObject:imageData];
+                        [segue.destinationViewController setTitle:photo.title];
+                    }
+                    
+                });
+                
+                //photo.lastAccessDate = [NSDate date];
+                //[self.photoCategory.managedObjectContext save:nil];
+                
+            });
         }
     }
 }
@@ -49,6 +87,31 @@
     _photoCategory = photoCategory;
     self.title = photoCategory.name;
     [self setupFetchedResultsController];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSArray *photos = [self.fetchedResultsController fetchedObjects];
+    for(int i=0; i<photos.count; i++)
+    {
+        if([[photos objectAtIndex:i] isKindOfClass:[Photo class]])
+        {
+            Photo *photo = (Photo *)[photos objectAtIndex:i];
+            
+            NSData *imageData=photo.thumbnailImage;
+            if(!imageData)
+            {
+                NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                imageData = [[NSData alloc] initWithContentsOfURL:url];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                photo.thumbnailImage = imageData;
+                [self.photoCategory.managedObjectContext save:nil];
+                
+            }
+        }
+        
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,13 +124,6 @@
     cell.detailTextLabel.text = photo.subtitle;
     
     NSData *imageData=photo.thumbnailImage;
-    if(!imageData)
-    {
-        NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
-        imageData = [[NSData alloc] initWithContentsOfURL:url];
-        photo.thumbnailImage = imageData;
-    }
-    
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     cell.imageView.image = image;
     

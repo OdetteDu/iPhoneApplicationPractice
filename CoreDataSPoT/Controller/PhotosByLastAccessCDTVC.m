@@ -9,12 +9,35 @@
 #import "PhotosByLastAccessCDTVC.h"
 #import "Photo+Flickr.h"
 #import "FlickrFetcher.h"
+#import "ImageViewController.h"
 
 @interface PhotosByLastAccessCDTVC ()
+
+@property (nonatomic, strong) NSFileManager *fileManager;
 
 @end
 
 @implementation PhotosByLastAccessCDTVC
+
+-(NSFileManager *)fileManager
+{
+    if(!_fileManager)_fileManager=[[NSFileManager alloc] init];
+    return _fileManager;
+}
+
+- (void) savePhoto:(NSString *)photoID withData:(NSData *)data
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    [data writeToURL:url atomically:YES];
+}
+
+- (NSData *) loadPhoto: (NSString *)photoID
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    return [NSData dataWithContentsOfURL:url];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -29,16 +52,26 @@
         if ([segue.identifier isEqualToString:@"Show Image"])
         {
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
             
-            if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
+            NSData *imageData = [self loadPhoto:photo.unique];
+            if(!imageData)
             {
-                [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                imageData = [[NSData alloc] initWithContentsOfURL:url];
+                [self savePhoto:photo.unique withData:imageData];
+            }
+            
+            if ([segue.destinationViewController respondsToSelector:@selector(setImageData:)])
+            {
+                [segue.destinationViewController performSelector:@selector(setImageData:) withObject:imageData];
                 [segue.destinationViewController setTitle:photo.title];
             }
             
             photo.lastAccessDate = [NSDate date];
             
+            [self.managedObjectContext save:nil];
         }
     }
 }
@@ -49,6 +82,28 @@
     if (!self.managedObjectContext)
     {
         [self useDocument];
+    }
+    
+    NSArray *photos = [self.fetchedResultsController fetchedObjects];
+    for(int i=0; i<photos.count; i++)
+    {
+        if([[photos objectAtIndex:i] isKindOfClass:[Photo class]])
+        {
+            Photo *photo = (Photo *)[photos objectAtIndex:i];
+            
+            NSData *imageData=photo.thumbnailImage;
+            if(!imageData)
+            {
+                NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                imageData = [[NSData alloc] initWithContentsOfURL:url];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                photo.thumbnailImage = imageData;
+                [self.managedObjectContext save:nil];
+                
+            }
+        }
+        
     }
 }
 
@@ -131,9 +186,7 @@
     cell.textLabel.text = photo.title;
     cell.detailTextLabel.text = photo.subtitle;
     
-    NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
-    //photo.thumbnailImage = imageData;
+    NSData *imageData=photo.thumbnailImage;
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     cell.imageView.image = image;
     
