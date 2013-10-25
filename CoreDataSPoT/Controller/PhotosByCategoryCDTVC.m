@@ -8,12 +8,36 @@
 
 #import "PhotosByCategoryCDTVC.h"
 #import "Photo.h"
+#import "FlickrFetcher.h"
 
 @interface PhotosByCategoryCDTVC ()
 
 @end
 
 @implementation PhotosByCategoryCDTVC
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = nil;
+    
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        indexPath = [self.tableView indexPathForCell:sender];
+    }
+    
+    if (indexPath) {
+        if ([segue.identifier isEqualToString:@"Show Image"]) {
+            Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
+            
+            if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
+            {
+                [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                NSLog(@"%@", photo.imageURL);
+                [segue.destinationViewController setTitle:photo.title];
+            }
+        }
+    }
+}
 
 - (void)setPhotoCategory:(PhotoCategory *)photoCategory
 {

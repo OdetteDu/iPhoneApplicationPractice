@@ -25,7 +25,6 @@
 		846C1F76181A00FC002918A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F75181A00FC002918A3 /* CoreData.framework */; };
 		846C1F79181A0140002918A3 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F78181A0140002918A3 /* Photo.m */; };
 		846C1F7C181A0140002918A3 /* PhotoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F7B181A0140002918A3 /* PhotoCategory.m */; };
-		846C1F85181A01B2002918A3 /* AttributedStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F80181A01B2002918A3 /* AttributedStringViewController.m */; };
 		846C1F86181A01B2002918A3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F82181A01B2002918A3 /* CoreDataTableViewController.m */; };
 		846C1F87181A01B2002918A3 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F84181A01B2002918A3 /* ImageViewController.m */; };
 		846C1F8C181A01BF002918A3 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F8B181A01BF002918A3 /* FlickrFetcher.m */; };
@@ -70,8 +69,6 @@
 		846C1F78181A0140002918A3 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = CoreData/Photo.m; sourceTree = "<group>"; };
 		846C1F7A181A0140002918A3 /* PhotoCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCategory.h; path = CoreData/PhotoCategory.h; sourceTree = "<group>"; };
 		846C1F7B181A0140002918A3 /* PhotoCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCategory.m; path = CoreData/PhotoCategory.m; sourceTree = "<group>"; };
-		846C1F7F181A01B2002918A3 /* AttributedStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringViewController.h; sourceTree = "<group>"; };
-		846C1F80181A01B2002918A3 /* AttributedStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringViewController.m; sourceTree = "<group>"; };
 		846C1F81181A01B2002918A3 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		846C1F82181A01B2002918A3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		846C1F83181A01B2002918A3 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
@@ -209,8 +206,6 @@
 		846C1F7E181A01B2002918A3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				846C1F7F181A01B2002918A3 /* AttributedStringViewController.h */,
-				846C1F80181A01B2002918A3 /* AttributedStringViewController.m */,
 				846C1F81181A01B2002918A3 /* CoreDataTableViewController.h */,
 				846C1F82181A01B2002918A3 /* CoreDataTableViewController.m */,
 				846C1F83181A01B2002918A3 /* ImageViewController.h */,
@@ -338,7 +333,6 @@
 				846C1F8F181A01F6002918A3 /* Photo+Flickr.m in Sources */,
 				846C1F87181A01B2002918A3 /* ImageViewController.m in Sources */,
 				846C1F86181A01B2002918A3 /* CoreDataTableViewController.m in Sources */,
-				846C1F85181A01B2002918A3 /* AttributedStringViewController.m in Sources */,
 				846C1F92181A056D002918A3 /* PhotoCategory+Create.m in Sources */,
 				846C1F441819FFEC002918A3 /* AppDelegate.m in Sources */,
 				846C1F401819FFEC002918A3 /* main.m in Sources */,
