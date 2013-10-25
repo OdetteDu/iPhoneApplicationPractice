@@ -2,7 +2,7 @@
 //  Photo.m
 //  CoreDataSPoT
 //
-//  Created by Caidie on 10/24/13.
+//  Created by Caidie on 10/25/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
@@ -12,12 +12,13 @@
 
 @implementation Photo
 
-@dynamic title;
-@dynamic subtitle;
-@dynamic unique;
-@dynamic thumbnailImage;
-@dynamic lastAccessDate;
 @dynamic imageURL;
+@dynamic lastAccessDate;
+@dynamic subtitle;
+@dynamic thumbnailImage;
+@dynamic title;
+@dynamic unique;
+@dynamic thumbnailURL;
 @dynamic whichCategory;
 
 @end

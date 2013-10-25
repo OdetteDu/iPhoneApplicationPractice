@@ -59,6 +59,12 @@
     cell.textLabel.text = photo.title;
     cell.detailTextLabel.text = photo.subtitle;
     
+    NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
+    //photo.thumbnailImage = imageData;
+    UIImage *image = [[UIImage alloc] initWithData:imageData];
+    cell.imageView.image = image;
+    
     return cell;
 }
 

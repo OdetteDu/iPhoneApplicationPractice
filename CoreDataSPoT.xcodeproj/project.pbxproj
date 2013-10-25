@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8462E483181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462E482181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m */; };
+		8462E486181A45DC003526B9 /* PhotoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462E485181A45DC003526B9 /* PhotoCategory.m */; };
+		8462E489181A45DC003526B9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462E488181A45DC003526B9 /* Photo.m */; };
 		846C1F341819FFEC002918A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F331819FFEC002918A3 /* Foundation.framework */; };
 		846C1F361819FFEC002918A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F351819FFEC002918A3 /* CoreGraphics.framework */; };
 		846C1F381819FFEC002918A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F371819FFEC002918A3 /* UIKit.framework */; };
@@ -24,8 +26,6 @@
 		846C1F621819FFEC002918A3 /* CoreDataSPoTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F611819FFEC002918A3 /* CoreDataSPoTTests.m */; };
 		846C1F6E181A001B002918A3 /* SPoT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F6C181A001B002918A3 /* SPoT.xcdatamodeld */; };
 		846C1F76181A00FC002918A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F75181A00FC002918A3 /* CoreData.framework */; };
-		846C1F79181A0140002918A3 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F78181A0140002918A3 /* Photo.m */; };
-		846C1F7C181A0140002918A3 /* PhotoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F7B181A0140002918A3 /* PhotoCategory.m */; };
 		846C1F86181A01B2002918A3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F82181A01B2002918A3 /* CoreDataTableViewController.m */; };
 		846C1F87181A01B2002918A3 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F84181A01B2002918A3 /* ImageViewController.m */; };
 		846C1F8C181A01BF002918A3 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1F8B181A01BF002918A3 /* FlickrFetcher.m */; };
@@ -48,6 +48,10 @@
 /* Begin PBXFileReference section */
 		8462E481181A3DD5003526B9 /* PhotosByLastAccessCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosByLastAccessCDTVC.h; sourceTree = "<group>"; };
 		8462E482181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosByLastAccessCDTVC.m; sourceTree = "<group>"; };
+		8462E484181A45DC003526B9 /* PhotoCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCategory.h; path = CoreData/PhotoCategory.h; sourceTree = "<group>"; };
+		8462E485181A45DC003526B9 /* PhotoCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCategory.m; path = CoreData/PhotoCategory.m; sourceTree = "<group>"; };
+		8462E487181A45DC003526B9 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = CoreData/Photo.h; sourceTree = "<group>"; };
+		8462E488181A45DC003526B9 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = CoreData/Photo.m; sourceTree = "<group>"; };
 		846C1F301819FFEC002918A3 /* CoreDataSPoT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataSPoT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846C1F331819FFEC002918A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		846C1F351819FFEC002918A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,10 +72,6 @@
 		846C1F611819FFEC002918A3 /* CoreDataSPoTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSPoTTests.m; sourceTree = "<group>"; };
 		846C1F6D181A001B002918A3 /* SPoT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SPoT.xcdatamodel; sourceTree = "<group>"; };
 		846C1F75181A00FC002918A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		846C1F77181A0140002918A3 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = CoreData/Photo.h; sourceTree = "<group>"; };
-		846C1F78181A0140002918A3 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = CoreData/Photo.m; sourceTree = "<group>"; };
-		846C1F7A181A0140002918A3 /* PhotoCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCategory.h; path = CoreData/PhotoCategory.h; sourceTree = "<group>"; };
-		846C1F7B181A0140002918A3 /* PhotoCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCategory.m; path = CoreData/PhotoCategory.m; sourceTree = "<group>"; };
 		846C1F81181A01B2002918A3 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		846C1F82181A01B2002918A3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		846C1F83181A01B2002918A3 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
@@ -194,12 +194,12 @@
 			isa = PBXGroup;
 			children = (
 				846C1F6C181A001B002918A3 /* SPoT.xcdatamodeld */,
-				846C1F77181A0140002918A3 /* Photo.h */,
-				846C1F78181A0140002918A3 /* Photo.m */,
+				8462E487181A45DC003526B9 /* Photo.h */,
+				8462E488181A45DC003526B9 /* Photo.m */,
+				8462E484181A45DC003526B9 /* PhotoCategory.h */,
+				8462E485181A45DC003526B9 /* PhotoCategory.m */,
 				846C1F8D181A01F6002918A3 /* Photo+Flickr.h */,
 				846C1F8E181A01F6002918A3 /* Photo+Flickr.m */,
-				846C1F7A181A0140002918A3 /* PhotoCategory.h */,
-				846C1F7B181A0140002918A3 /* PhotoCategory.m */,
 				846C1F90181A056D002918A3 /* PhotoCategory+Create.h */,
 				846C1F91181A056D002918A3 /* PhotoCategory+Create.m */,
 			);
@@ -332,17 +332,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				846C1F98181A14B6002918A3 /* PhotosByCategoryCDTVC.m in Sources */,
-				846C1F79181A0140002918A3 /* Photo.m in Sources */,
 				846C1F8C181A01BF002918A3 /* FlickrFetcher.m in Sources */,
-				846C1F7C181A0140002918A3 /* PhotoCategory.m in Sources */,
 				846C1F8F181A01F6002918A3 /* Photo+Flickr.m in Sources */,
 				8462E483181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m in Sources */,
+				8462E489181A45DC003526B9 /* Photo.m in Sources */,
 				846C1F87181A01B2002918A3 /* ImageViewController.m in Sources */,
 				846C1F86181A01B2002918A3 /* CoreDataTableViewController.m in Sources */,
 				846C1F92181A056D002918A3 /* PhotoCategory+Create.m in Sources */,
 				846C1F441819FFEC002918A3 /* AppDelegate.m in Sources */,
 				846C1F401819FFEC002918A3 /* main.m in Sources */,
 				846C1F6E181A001B002918A3 /* SPoT.xcdatamodeld in Sources */,
+				8462E486181A45DC003526B9 /* PhotoCategory.m in Sources */,
 				846C1F95181A09A3002918A3 /* PhotoCategoryCDTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

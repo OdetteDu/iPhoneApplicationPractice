@@ -2,7 +2,7 @@
 //  PhotoCategory.h
 //  CoreDataSPoT
 //
-//  Created by Caidie on 10/24/13.
+//  Created by Caidie on 10/25/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
