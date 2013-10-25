@@ -39,6 +39,7 @@
             
             photo.lastAccessDate = [NSDate date];
             
+            [self.photoCategory.managedObjectContext save:nil];
         }
     }
 }
@@ -59,9 +60,14 @@
     cell.textLabel.text = photo.title;
     cell.detailTextLabel.text = photo.subtitle;
     
-    NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
-    //photo.thumbnailImage = imageData;
+    NSData *imageData=photo.thumbnailImage;
+    if(!imageData)
+    {
+        NSURL *url = [[NSURL alloc] initWithString:photo.thumbnailURL];
+        imageData = [[NSData alloc] initWithContentsOfURL:url];
+        photo.thumbnailImage = imageData;
+    }
+    
     UIImage *image = [[UIImage alloc] initWithData:imageData];
     cell.imageView.image = image;
     
