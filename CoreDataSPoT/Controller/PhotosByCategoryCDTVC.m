@@ -24,17 +24,21 @@
         indexPath = [self.tableView indexPathForCell:sender];
     }
     
-    if (indexPath) {
-        if ([segue.identifier isEqualToString:@"Show Image"]) {
+    if (indexPath)
+    {
+        if ([segue.identifier isEqualToString:@"Show Image"])
+        {
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
             NSURL *url = [[NSURL alloc] initWithString:photo.imageURL];
             
             if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
             {
                 [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
-                NSLog(@"%@", photo.imageURL);
                 [segue.destinationViewController setTitle:photo.title];
             }
+            
+            photo.lastAccessDate = [NSDate date];
+            
         }
     }
 }

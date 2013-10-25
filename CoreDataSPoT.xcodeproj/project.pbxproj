@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8462E483181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8462E482181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m */; };
 		846C1F341819FFEC002918A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F331819FFEC002918A3 /* Foundation.framework */; };
 		846C1F361819FFEC002918A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F351819FFEC002918A3 /* CoreGraphics.framework */; };
 		846C1F381819FFEC002918A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846C1F371819FFEC002918A3 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8462E481181A3DD5003526B9 /* PhotosByLastAccessCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosByLastAccessCDTVC.h; sourceTree = "<group>"; };
+		8462E482181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosByLastAccessCDTVC.m; sourceTree = "<group>"; };
 		846C1F301819FFEC002918A3 /* CoreDataSPoT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataSPoT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846C1F331819FFEC002918A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		846C1F351819FFEC002918A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -214,6 +217,8 @@
 				846C1F94181A09A3002918A3 /* PhotoCategoryCDTVC.m */,
 				846C1F96181A14B6002918A3 /* PhotosByCategoryCDTVC.h */,
 				846C1F97181A14B6002918A3 /* PhotosByCategoryCDTVC.m */,
+				8462E481181A3DD5003526B9 /* PhotosByLastAccessCDTVC.h */,
+				8462E482181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				846C1F8C181A01BF002918A3 /* FlickrFetcher.m in Sources */,
 				846C1F7C181A0140002918A3 /* PhotoCategory.m in Sources */,
 				846C1F8F181A01F6002918A3 /* Photo+Flickr.m in Sources */,
+				8462E483181A3DD5003526B9 /* PhotosByLastAccessCDTVC.m in Sources */,
 				846C1F87181A01B2002918A3 /* ImageViewController.m in Sources */,
 				846C1F86181A01B2002918A3 /* CoreDataTableViewController.m in Sources */,
 				846C1F92181A056D002918A3 /* PhotoCategory+Create.m in Sources */,
