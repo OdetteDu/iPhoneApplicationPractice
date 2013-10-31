@@ -10,9 +10,6 @@
 
 @interface ImageViewController : UIViewController
 
-//@property (nonatomic, strong) NSURL *imageURL;
-@property (nonatomic, strong) NSData *imageData;
-
-//- (void)setImageURL:(NSURL *)imageURL;
+@property (nonatomic, strong) NSString *photoId;
 
 @end

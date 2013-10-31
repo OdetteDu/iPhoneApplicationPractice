@@ -23,10 +23,10 @@
     self.splitViewController.delegate=self;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-{
-    return NO;
-}
+//- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+//{
+//    return NO;
+//}
 
 - (PhotoManager *)photoManager
 {

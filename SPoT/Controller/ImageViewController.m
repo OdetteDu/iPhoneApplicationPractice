@@ -7,15 +7,24 @@
 //
 
 #import "ImageViewController.h"
+#import "RecentlyViewedPhotoSaver.h"
 
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scorllView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *titleBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) NSData *imageData;
+@property (strong, nonatomic) RecentlyViewedPhotoSaver *photoSaver;
 @end
 
 @implementation ImageViewController
+
+- (RecentlyViewedPhotoSaver *)photoSaver
+{
+    if(!_photoSaver) _photoSaver=[[RecentlyViewedPhotoSaver alloc] init];
+    return _photoSaver;
+}
 
 - (void)setTitle:(NSString *)title
 {
@@ -23,57 +32,52 @@
     self.titleBarButtonItem.title=title;
 }
 
-//- (void)setImageURL:(NSURL *)imageURL
-//{
-//    _imageURL = imageURL;
-//    [self resetImage];
-//}
-
-- (void)setImageData:(NSData *)imageData
+- (void)setPhotoId:(NSString *)photoId
 {
-    _imageData = imageData;
+    _photoId = photoId;
     [self resetImage];
 }
 
 - (void)resetImage
 {
+    self.imageData = nil;
+    
     if (self.scorllView)
     {
         self.scorllView.contentSize = CGSizeZero;
         self.imageView.image = nil;
         
-        [self.spinner startAnimating];
-//        NSURL *imageURL = self.imageURL;
+       
         
-        dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
-        dispatch_async(imageFetchQ, ^{
-            
-            [NSThread sleepForTimeInterval:2.0];
-            
-//            if(!self.imageData)
-//            {
-//                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-//                self.imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
-//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//            }
+        if (self.imageData)
+        {
             UIImage *image = [[UIImage alloc] initWithData:self.imageData];
+            self.scorllView.zoomScale=1.0;
+            self.scorllView.contentSize=image.size;
+            self.imageView.image=image;
+            self.imageView.frame=CGRectMake(0,0, image.size.width, image.size.height);
+        }
+        else
+        {
+            [self.spinner startAnimating];
             
-//            if(self.imageURL == imageURL)
-//            {
+            dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
+            dispatch_async(imageFetchQ, ^{
+                
+                self.imageData=[self.photoSaver getCachedPhoto: self.photoId];
+                UIImage *image = [[UIImage alloc] initWithData:self.imageData];
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (image)
-                    {
-                        self.scorllView.zoomScale=1.0;
-                        self.scorllView.contentSize=image.size;
-                        self.imageView.image=image;
-                        self.imageView.frame=CGRectMake(0,0, image.size.width, image.size.height);
-                    }
+                    
+                    self.scorllView.zoomScale=1.0;
+                    self.scorllView.contentSize=image.size;
+                    self.imageView.image=image;
+                    self.imageView.frame=CGRectMake(0,0, image.size.width, image.size.height);
                     [self.spinner stopAnimating];
                 });
-//            }
-            
-        });
-        
+                
+            });
+        }
     }
 }
 

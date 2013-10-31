@@ -9,12 +9,25 @@
 #import "RecentlyViewedPhotoSaver.h"
 #import "FlickrFetcher.h"
 @interface RecentlyViewedPhotoSaver()
+@property (nonatomic, strong) NSArray *photos; // of NSDitionary
 //@property (nonatomic, strong) NSMutableArray *recentPhotos;
 @property (nonatomic, strong) NSMutableArray *recentPhotoIds;//of NSString
 @property (nonatomic, strong) NSFileManager *fileManager;
 @end
 
 @implementation RecentlyViewedPhotoSaver
+
+- (NSArray *)photos
+{
+    if(!_photos)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        _photos = [FlickrFetcher stanfordPhotos];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+    
+    return _photos;
+}
 
 -(NSFileManager *)fileManager
 {
@@ -105,7 +118,24 @@
 
 - (NSData *) getCachedPhoto: (NSString *)photoID
 {
-    return [self loadPhoto:photoID];
+    NSData *imageData = [self loadPhoto:photoID];
+    if(!imageData)
+    {
+        NSDictionary *photo;
+        for(int i=0; i<self.photos.count; i++)
+        {
+            if([photoID compare:[self.photos objectAtIndex:i][FLICKR_PHOTO_ID]]==0)
+            {
+                photo = [self.photos objectAtIndex:i];
+                break;
+            }
+        }
+        NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        imageData = [[NSData alloc] initWithContentsOfURL:url];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+    return imageData;
 }
 
 @end
