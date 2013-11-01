@@ -25,7 +25,7 @@
 
 - (FileSaver *)fileSaver
 {
-    if (_fileSaver) _fileSaver = [[FileSaver alloc] init];
+    if (!_fileSaver) _fileSaver = [[FileSaver alloc] init];
     return _fileSaver;
 }
 
@@ -88,7 +88,9 @@
             dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
             dispatch_async(imageFetchQ, ^{
 
-                self.imageData= [self.fileSaver getCachedPhoto:self.photoId withURL:self.photoURL];
+                NSString *pid = self.photoId;
+                NSString *purl = self.photoURL;
+                self.imageData= [self.fileSaver getCachedPhoto:pid withURL:purl];
                 UIImage *image = [[UIImage alloc] initWithData:self.imageData];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{

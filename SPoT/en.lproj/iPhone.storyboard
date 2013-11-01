@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="398" y="214"/>
         </scene>
-        <!--Photo By CategoryCDTVC-->
+        <!--Photos By CategoryCDTVC-->
         <scene sceneID="G69-pC-18j">
             <objects>
-                <tableViewController id="CLb-Ew-pdf" customClass="PhotoByCategoryCDTVC" sceneMemberID="viewController">
+                <tableViewController id="CLb-Ew-pdf" customClass="PhotosByCategoryCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="78c-kf-FnY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="1568" y="-94"/>
         </scene>
-        <!--Photo By Last AccessCDTVC-->
+        <!--Photos By Last AccessCDTVC-->
         <scene sceneID="nBk-Ol-ET1">
             <objects>
-                <tableViewController id="eLs-S0-jsC" customClass="PhotoByLastAccessCDTVC" sceneMemberID="viewController">
+                <tableViewController id="eLs-S0-jsC" customClass="PhotosByLastAccessCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Z80-hC-68B">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

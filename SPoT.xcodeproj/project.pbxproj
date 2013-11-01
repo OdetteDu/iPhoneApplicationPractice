@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84593D08182387920053F05B /* PhotoCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D03182387920053F05B /* PhotoCategoryCDTVC.m */; };
-		84593D09182387920053F05B /* PhotosByCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D05182387920053F05B /* PhotosByCategoryCDTVC.m */; };
-		84593D0A182387920053F05B /* PhotosByLastAccessCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D07182387920053F05B /* PhotosByLastAccessCDTVC.m */; };
-		84593D0D1823879D0053F05B /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D0C1823879D0053F05B /* CoreDataTableViewController.m */; };
+		843D95E9182395B200B82741 /* PhotoCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D95E4182395B200B82741 /* PhotoCategoryCDTVC.m */; };
+		843D95EA182395B200B82741 /* PhotosByCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D95E6182395B200B82741 /* PhotosByCategoryCDTVC.m */; };
+		843D95EB182395B200B82741 /* PhotosByLastAccessCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D95E8182395B200B82741 /* PhotosByLastAccessCDTVC.m */; };
+		843D95EE182395BC00B82741 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D95ED182395BC00B82741 /* CoreDataTableViewController.m */; };
+		843D95F1182395CC00B82741 /* FileSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D95F0182395CC00B82741 /* FileSaver.m */; };
 		84593D19182387F30053F05B /* Photo+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D10182387F30053F05B /* Photo+Flickr.m */; };
 		84593D1B182387F30053F05B /* PhotoCategory+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D14182387F30053F05B /* PhotoCategory+Create.m */; };
 		84593D1D182387F30053F05B /* SPoT.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84593D17182387F30053F05B /* SPoT.xcdatamodeld */; };
-		84593D20182388490053F05B /* FileSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D1F182388490053F05B /* FileSaver.m */; };
 		84593D2318238DD90053F05B /* PhotoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D2218238DD90053F05B /* PhotoCategory.m */; };
 		84593D2618238DDA0053F05B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84593D2518238DDA0053F05B /* Photo.m */; };
 		84593D2818238E0A0053F05B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84593D2718238E0A0053F05B /* CoreData.framework */; };
@@ -34,21 +34,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		84593D02182387920053F05B /* PhotoCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCategoryCDTVC.h; sourceTree = "<group>"; };
-		84593D03182387920053F05B /* PhotoCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCategoryCDTVC.m; sourceTree = "<group>"; };
-		84593D04182387920053F05B /* PhotosByCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosByCategoryCDTVC.h; sourceTree = "<group>"; };
-		84593D05182387920053F05B /* PhotosByCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosByCategoryCDTVC.m; sourceTree = "<group>"; };
-		84593D06182387920053F05B /* PhotosByLastAccessCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosByLastAccessCDTVC.h; sourceTree = "<group>"; };
-		84593D07182387920053F05B /* PhotosByLastAccessCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosByLastAccessCDTVC.m; sourceTree = "<group>"; };
-		84593D0B1823879D0053F05B /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
-		84593D0C1823879D0053F05B /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		843D95E3182395B200B82741 /* PhotoCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCategoryCDTVC.h; path = Controller/PhotoCategoryCDTVC.h; sourceTree = "<group>"; };
+		843D95E4182395B200B82741 /* PhotoCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCategoryCDTVC.m; path = Controller/PhotoCategoryCDTVC.m; sourceTree = "<group>"; };
+		843D95E5182395B200B82741 /* PhotosByCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotosByCategoryCDTVC.h; path = Controller/PhotosByCategoryCDTVC.h; sourceTree = "<group>"; };
+		843D95E6182395B200B82741 /* PhotosByCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotosByCategoryCDTVC.m; path = Controller/PhotosByCategoryCDTVC.m; sourceTree = "<group>"; };
+		843D95E7182395B200B82741 /* PhotosByLastAccessCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotosByLastAccessCDTVC.h; path = Controller/PhotosByLastAccessCDTVC.h; sourceTree = "<group>"; };
+		843D95E8182395B200B82741 /* PhotosByLastAccessCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotosByLastAccessCDTVC.m; path = Controller/PhotosByLastAccessCDTVC.m; sourceTree = "<group>"; };
+		843D95EC182395BC00B82741 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = Controller/CoreDataTableViewController.h; sourceTree = "<group>"; };
+		843D95ED182395BC00B82741 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = Controller/CoreDataTableViewController.m; sourceTree = "<group>"; };
+		843D95EF182395CC00B82741 /* FileSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileSaver.h; path = Model/FileSaver.h; sourceTree = "<group>"; };
+		843D95F0182395CC00B82741 /* FileSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileSaver.m; path = Model/FileSaver.m; sourceTree = "<group>"; };
 		84593D0F182387F30053F05B /* Photo+Flickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Flickr.h"; sourceTree = "<group>"; };
 		84593D10182387F30053F05B /* Photo+Flickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Flickr.m"; sourceTree = "<group>"; };
 		84593D13182387F30053F05B /* PhotoCategory+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoCategory+Create.h"; sourceTree = "<group>"; };
 		84593D14182387F30053F05B /* PhotoCategory+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoCategory+Create.m"; sourceTree = "<group>"; };
 		84593D18182387F30053F05B /* SPoT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SPoT.xcdatamodel; sourceTree = "<group>"; };
-		84593D1E182388490053F05B /* FileSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSaver.h; sourceTree = "<group>"; };
-		84593D1F182388490053F05B /* FileSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSaver.m; sourceTree = "<group>"; };
 		84593D2118238DD90053F05B /* PhotoCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCategory.h; sourceTree = "<group>"; };
 		84593D2218238DD90053F05B /* PhotoCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCategory.m; sourceTree = "<group>"; };
 		84593D2418238DDA0053F05B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
@@ -178,14 +178,14 @@
 		846979E718088B2A000EE3DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				84593D0B1823879D0053F05B /* CoreDataTableViewController.h */,
-				84593D0C1823879D0053F05B /* CoreDataTableViewController.m */,
-				84593D02182387920053F05B /* PhotoCategoryCDTVC.h */,
-				84593D03182387920053F05B /* PhotoCategoryCDTVC.m */,
-				84593D04182387920053F05B /* PhotosByCategoryCDTVC.h */,
-				84593D05182387920053F05B /* PhotosByCategoryCDTVC.m */,
-				84593D06182387920053F05B /* PhotosByLastAccessCDTVC.h */,
-				84593D07182387920053F05B /* PhotosByLastAccessCDTVC.m */,
+				843D95EC182395BC00B82741 /* CoreDataTableViewController.h */,
+				843D95ED182395BC00B82741 /* CoreDataTableViewController.m */,
+				843D95E3182395B200B82741 /* PhotoCategoryCDTVC.h */,
+				843D95E4182395B200B82741 /* PhotoCategoryCDTVC.m */,
+				843D95E5182395B200B82741 /* PhotosByCategoryCDTVC.h */,
+				843D95E6182395B200B82741 /* PhotosByCategoryCDTVC.m */,
+				843D95E7182395B200B82741 /* PhotosByLastAccessCDTVC.h */,
+				843D95E8182395B200B82741 /* PhotosByLastAccessCDTVC.m */,
 				846979F3180896A6000EE3DB /* ImageViewController.h */,
 				846979F4180896A6000EE3DB /* ImageViewController.m */,
 			);
@@ -195,8 +195,8 @@
 		846979F918089CE4000EE3DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84593D1E182388490053F05B /* FileSaver.h */,
-				84593D1F182388490053F05B /* FileSaver.m */,
+				843D95EF182395CC00B82741 /* FileSaver.h */,
+				843D95F0182395CC00B82741 /* FileSaver.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -271,17 +271,17 @@
 				84593D2618238DDA0053F05B /* Photo.m in Sources */,
 				84593D19182387F30053F05B /* Photo+Flickr.m in Sources */,
 				846979C918079BD0000EE3DB /* main.m in Sources */,
-				84593D20182388490053F05B /* FileSaver.m in Sources */,
+				843D95E9182395B200B82741 /* PhotoCategoryCDTVC.m in Sources */,
+				843D95EA182395B200B82741 /* PhotosByCategoryCDTVC.m in Sources */,
 				846979CD18079BD0000EE3DB /* AppDelegate.m in Sources */,
 				846979E318079C33000EE3DB /* FlickrFetcher.m in Sources */,
 				846979F5180896A6000EE3DB /* ImageViewController.m in Sources */,
-				84593D0D1823879D0053F05B /* CoreDataTableViewController.m in Sources */,
-				84593D09182387920053F05B /* PhotosByCategoryCDTVC.m in Sources */,
-				84593D0A182387920053F05B /* PhotosByLastAccessCDTVC.m in Sources */,
-				84593D08182387920053F05B /* PhotoCategoryCDTVC.m in Sources */,
+				843D95EE182395BC00B82741 /* CoreDataTableViewController.m in Sources */,
 				84593D1D182387F30053F05B /* SPoT.xcdatamodeld in Sources */,
 				84593D2318238DD90053F05B /* PhotoCategory.m in Sources */,
+				843D95EB182395B200B82741 /* PhotosByLastAccessCDTVC.m in Sources */,
 				84593D1B182387F30053F05B /* PhotoCategory+Create.m in Sources */,
+				843D95F1182395CC00B82741 /* FileSaver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
