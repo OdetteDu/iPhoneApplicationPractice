@@ -37,9 +37,7 @@
     
     barButtonItem.title = @"Navigation";
     id detailViewController = [self.splitViewController.viewControllers lastObject];
-    NSLog(@"Found detailViewController: %@", detailViewController);
     [detailViewController setSplitViewBarButtonItem:barButtonItem];
-    NSLog(@"Set SplitViewBarButtonItem");
     
 }
 

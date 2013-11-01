@@ -33,12 +33,12 @@
                     <toolbarItems/>
                     <connections>
                         <segue destination="hyZ-yD-bwS" kind="relationship" relationship="masterViewController" id="ClV-0I-WAP"/>
-                        <segue destination="YlD-TC-mi2" kind="relationship" relationship="detailViewController" id="Ekq-FO-MY7"/>
+                        <segue destination="YlD-TC-mi2" kind="relationship" relationship="detailViewController" id="pJg-GQ-o6s"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xye-YZ-6Wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3089" y="-213"/>
+            <point key="canvasLocation" x="-3113" y="-165"/>
         </scene>
         <!--Photo Table View Controller-->
         <scene sceneID="xI6-1l-CpV">
@@ -289,6 +289,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Q8b-bl-PDH"/>
+        <segue reference="pJg-GQ-o6s"/>
     </inferredMetricsTieBreakers>
 </document>

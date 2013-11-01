@@ -24,7 +24,7 @@
 
 - (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
 {
-    return NO;
+    return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (void) splitViewController:(UISplitViewController *)svc
@@ -32,13 +32,9 @@
            withBarButtonItem:(UIBarButtonItem *)barButtonItem
         forPopoverController:(UIPopoverController *)pc
 {
-    
     barButtonItem.title = @"Navigation";
     id detailViewController = [self.splitViewController.viewControllers lastObject];
-    NSLog(@"Found detailViewController: %@", detailViewController);
-    [detailViewController setSplitViewBarButtonItem:barButtonItem];\
-    NSLog(@"Set SplitViewBarButtonItem");
-    
+    [detailViewController setSplitViewBarButtonItem:barButtonItem];
 }
 
 - (RecentlyViewedPhotoSaver *)photoSaver
@@ -65,7 +61,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.photos = [FlickrFetcher stanfordPhotos];
     self.photos = [self.photoSaver getRecentlyViewedPhotos];
     [self loadLatestPhotosFromFlickr];
     [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];

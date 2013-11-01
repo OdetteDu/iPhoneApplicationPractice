@@ -23,18 +23,22 @@
 
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
-//    UIToolbar *toolbar = self.toolbar;
-//    NSMutableArray *toolbarItems = [toolbar.items mutableCopy];
-//    if (_splitViewBarButtonItem) {
-//        [toolbarItems removeObject:_splitViewBarButtonItem];
-//    }
-//    if (splitViewBarButtonItem) {
-//        [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
-//    }
-//    toolbar.items = toolbarItems;
-//    _splitViewBarButtonItem = splitViewBarButtonItem;
-    self.toolbar.items = @[splitViewBarButtonItem];
+    UIToolbar *toolbar = self.toolbar;
+    NSMutableArray *toolbarItems = [toolbar.items mutableCopy];
+    
+    if (_splitViewBarButtonItem)
+    {
+        [toolbarItems removeObject:_splitViewBarButtonItem];
+    }
+    
+    if (splitViewBarButtonItem)
+    {
+        [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+    }
+    toolbar.items = toolbarItems;
     _splitViewBarButtonItem = splitViewBarButtonItem;
+//    self.toolbar.items = @[splitViewBarButtonItem];
+//    _splitViewBarButtonItem = splitViewBarButtonItem;
 }
 
 - (RecentlyViewedPhotoSaver *)photoSaver
