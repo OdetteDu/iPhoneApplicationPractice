@@ -222,6 +222,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="YlD-TC-mi2" kind="replace" identifier="Show Image" splitViewControllerTargetIndex="1" id="Q8b-bl-PDH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -234,9 +237,6 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="zv1-uS-NV5">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
-                    <connections>
-                        <segue destination="YlD-TC-mi2" kind="replace" identifier="Show Image" splitViewControllerTargetIndex="1" id="tNS-y7-ZTz"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vEM-ls-vuz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -289,6 +289,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tNS-y7-ZTz"/>
+        <segue reference="Q8b-bl-PDH"/>
     </inferredMetricsTieBreakers>
 </document>

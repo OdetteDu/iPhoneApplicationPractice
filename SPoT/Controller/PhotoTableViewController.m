@@ -80,6 +80,7 @@
                     NSDictionary *currentPhoto = self.photos[indexPath.row];
                     [ivc setPhotoId:currentPhoto[FLICKR_PHOTO_ID]];
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
+                    [self.photoSaver addRecentlyViewedPhoto:currentPhoto[FLICKR_PHOTO_ID]];
                 }
             }
         }

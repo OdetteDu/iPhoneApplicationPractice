@@ -33,9 +33,7 @@
 //    }
 //    toolbar.items = toolbarItems;
 //    _splitViewBarButtonItem = splitViewBarButtonItem;
-    NSLog(@"About to set toolbar items");
     self.toolbar.items = @[splitViewBarButtonItem];
-    NSLog(@"Set toolbar items");
     _splitViewBarButtonItem = splitViewBarButtonItem;
 }
 
@@ -54,7 +52,6 @@
 - (void)setPhotoId:(NSString *)photoId
 {
     _photoId = photoId;
-    [self.photoSaver addRecentlyViewedPhoto:photoId];
     [self resetImage];
 }
 

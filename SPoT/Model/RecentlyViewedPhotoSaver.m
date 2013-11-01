@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSArray *photos; // of NSDitionary
 //@property (nonatomic, strong) NSMutableArray *recentPhotos;
 @property (nonatomic, strong) NSMutableArray *recentPhotoIds;//of NSString
+@property (nonatomic, strong) NSMutableArray *cachedPhotoIds;//of NSString
 @property (nonatomic, strong) NSFileManager *fileManager;
 @end
 
@@ -41,6 +42,12 @@
     return _recentPhotoIds;
 }
 
+- (NSMutableArray *)cachedPhotoIds
+{
+    if(!_cachedPhotoIds) _cachedPhotoIds = [[NSMutableArray alloc] init];
+    return _cachedPhotoIds;
+}
+
 - (void) addRecentlyViewedPhoto: (NSString *)photoID
 {
     [self readFromDisk];
@@ -51,14 +58,12 @@
     
     if(self.recentPhotoIds.count > RECENTLY_VIEWED_PHOTO_CAPACITY)
     {
+        [self removePhoto:[self.recentPhotoIds objectAtIndex:0]];
         [self.recentPhotoIds removeObjectAtIndex:0];
+        
     }
     
     [self saveToDisk];
-    
-    NSData *imageData = [self getCachedPhoto:photoID];
-    
-    [self savePhoto:photoID withData:imageData];
 }
 
 - (NSArray *) getRecentlyViewedPhotos
@@ -89,9 +94,20 @@
     [[NSUserDefaults standardUserDefaults] synchronize]; 
 }
 
+- (void) saveCachedPhotoIdsToDisk
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.cachedPhotoIds forKey:CACHED_PHOTO_KEY ];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void) readFromDisk
 {
     self.recentPhotoIds = [[[NSUserDefaults standardUserDefaults] arrayForKey:RECENTLY_VIEWED_PHOTO_KEY ] mutableCopy];
+}
+
+- (void) readCachedPhotoIdsFromDisk
+{
+    self.cachedPhotoIds = [[[NSUserDefaults standardUserDefaults] arrayForKey:CACHED_PHOTO_KEY ] mutableCopy];
 }
 
 - (void) savePhoto:(NSString *)photoID withData:(NSData *)data
@@ -99,6 +115,16 @@
     NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
     NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
     [data writeToURL:url atomically:YES];
+}
+
+- (void)removePhoto: (NSString *)photoID
+{
+    NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
+    if([self.fileManager removeItemAtURL:url error:nil])
+    {
+        NSLog(@"remove cached photos");
+    }
 }
 
 - (NSData *) loadPhoto: (NSString *)photoID
@@ -134,6 +160,26 @@
     {
         NSLog(@"Get image data from the disk");
     }
+    
+    //[self addRecentlyViewedPhoto:photoID];
+    
+    [self readCachedPhotoIdsFromDisk];
+    
+    [self.cachedPhotoIds removeObject:photoID];
+    
+    [self.cachedPhotoIds addObject:photoID];
+    
+    if(self.cachedPhotoIds.count > CACHED_PHOTO_CAPACITY)
+    {
+        [self removePhoto:[self.cachedPhotoIds objectAtIndex:0]];
+        [self.cachedPhotoIds removeObjectAtIndex:0];
+    }
+    
+    [self saveCachedPhotoIdsToDisk];
+    
+    //NSData *imageData = [self getCachedPhoto:photoID];
+    
+    [self savePhoto:photoID withData:imageData];
     
     return imageData;
 }

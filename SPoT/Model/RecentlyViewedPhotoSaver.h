@@ -10,10 +10,13 @@
 
 #define RECENTLY_VIEWED_PHOTO_CAPACITY 10
 #define RECENTLY_VIEWED_PHOTO_KEY @"Recently_Viewed_Photo_Key"
+#define CACHED_PHOTO_CAPACITY 4
+#define CACHED_PHOTO_KEY @"Cached_Photo_Key"
 
 @interface RecentlyViewedPhotoSaver : NSObject
-- (void) addRecentlyViewedPhoto: (NSString *)photoID;
+
 - (NSArray *) getRecentlyViewedPhotos;
 - (NSData *) getCachedPhoto: (NSString *)photoID;
+- (void) addRecentlyViewedPhoto: (NSString *)photoID;
 
 @end
