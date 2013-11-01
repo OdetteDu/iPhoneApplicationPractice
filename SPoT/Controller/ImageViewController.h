@@ -11,5 +11,6 @@
 @interface ImageViewController : UIViewController
 
 @property (nonatomic, strong) NSString *photoId;
+@property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
 
 @end

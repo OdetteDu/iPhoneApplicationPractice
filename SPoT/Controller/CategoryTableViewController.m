@@ -10,6 +10,7 @@
 #import "FlickrFetcher.h"
 #import "PhotoManager.h"
 #import "PhotoTableViewController.h"
+#import "ImageViewController.h"
 
 @interface CategoryTableViewController () <UISplitViewControllerDelegate>
 @property (strong, nonatomic) PhotoManager *photoManager;
@@ -23,10 +24,24 @@
     self.splitViewController.delegate=self;
 }
 
-//- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    return NO;
-//}
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void) splitViewController:(UISplitViewController *)svc
+      willHideViewController:(UIViewController *)aViewController
+           withBarButtonItem:(UIBarButtonItem *)barButtonItem
+        forPopoverController:(UIPopoverController *)pc
+{
+    
+    barButtonItem.title = @"Navigation";
+    id detailViewController = [self.splitViewController.viewControllers lastObject];
+    NSLog(@"Found detailViewController: %@", detailViewController);
+    [detailViewController setSplitViewBarButtonItem:barButtonItem];
+    NSLog(@"Set SplitViewBarButtonItem");
+    
+}
 
 - (PhotoManager *)photoManager
 {

@@ -27,6 +27,20 @@
     return NO;
 }
 
+- (void) splitViewController:(UISplitViewController *)svc
+      willHideViewController:(UIViewController *)aViewController
+           withBarButtonItem:(UIBarButtonItem *)barButtonItem
+        forPopoverController:(UIPopoverController *)pc
+{
+    
+    barButtonItem.title = @"Navigation";
+    id detailViewController = [self.splitViewController.viewControllers lastObject];
+    NSLog(@"Found detailViewController: %@", detailViewController);
+    [detailViewController setSplitViewBarButtonItem:barButtonItem];\
+    NSLog(@"Set SplitViewBarButtonItem");
+    
+}
+
 - (RecentlyViewedPhotoSaver *)photoSaver
 {
     if(!_photoSaver) _photoSaver=[[RecentlyViewedPhotoSaver alloc] init];

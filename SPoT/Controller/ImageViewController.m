@@ -16,9 +16,28 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) NSData *imageData;
 @property (strong, nonatomic) RecentlyViewedPhotoSaver *photoSaver;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @end
 
 @implementation ImageViewController
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+//    UIToolbar *toolbar = self.toolbar;
+//    NSMutableArray *toolbarItems = [toolbar.items mutableCopy];
+//    if (_splitViewBarButtonItem) {
+//        [toolbarItems removeObject:_splitViewBarButtonItem];
+//    }
+//    if (splitViewBarButtonItem) {
+//        [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+//    }
+//    toolbar.items = toolbarItems;
+//    _splitViewBarButtonItem = splitViewBarButtonItem;
+    NSLog(@"About to set toolbar items");
+    self.toolbar.items = @[splitViewBarButtonItem];
+    NSLog(@"Set toolbar items");
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
 
 - (RecentlyViewedPhotoSaver *)photoSaver
 {
@@ -35,6 +54,7 @@
 - (void)setPhotoId:(NSString *)photoId
 {
     _photoId = photoId;
+    [self.photoSaver addRecentlyViewedPhoto:photoId];
     [self resetImage];
 }
 
@@ -42,12 +62,13 @@
 {
     self.imageData = nil;
     
+    if(!self.photoId)
+        return;
+    
     if (self.scorllView)
     {
         self.scorllView.contentSize = CGSizeZero;
         self.imageView.image = nil;
-        
-       
         
         if (self.imageData)
         {
@@ -56,6 +77,7 @@
             self.scorllView.contentSize=image.size;
             self.imageView.image=image;
             self.imageView.frame=CGRectMake(0,0, image.size.width, image.size.height);
+            
         }
         else
         {
@@ -63,7 +85,7 @@
             
             dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
             dispatch_async(imageFetchQ, ^{
-                
+
                 self.imageData=[self.photoSaver getCachedPhoto: self.photoId];
                 UIImage *image = [[UIImage alloc] initWithData:self.imageData];
                 
@@ -73,6 +95,7 @@
                     self.scorllView.contentSize=image.size;
                     self.imageView.image=image;
                     self.imageView.frame=CGRectMake(0,0, image.size.width, image.size.height);
+                    [self resetZoom];
                     [self.spinner stopAnimating];
                 });
                 
@@ -83,18 +106,22 @@
 
 - (void) viewDidLayoutSubviews
 {
+    [super viewDidLayoutSubviews];
+    [self resetZoom];
+}
+
+- (void) resetZoom
+{
     CGRect target = self.scorllView.bounds;
     CGSize source = self.imageView.image.size;
     
     if(target.size.width > target.size.height)
     {
         self.scorllView.zoomScale=target.size.height/source.height;
-        self.scorllView.minimumZoomScale = target.size.height/source.height;
     }
     else
     {
         self.scorllView.zoomScale=target.size.width/source.width;
-        self.scorllView.minimumZoomScale = target.size.width/source.width;
     }
 }
 
@@ -108,8 +135,6 @@
     if(!_imageView) _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     return _imageView;
 }
-
-
 
 - (void)viewDidLoad
 {

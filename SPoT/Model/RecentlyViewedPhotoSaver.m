@@ -41,20 +41,13 @@
     return _recentPhotoIds;
 }
 
-- (void) addRecentlyViewedPhoto: (NSDictionary *)photo
+- (void) addRecentlyViewedPhoto: (NSString *)photoID
 {
     [self readFromDisk];
     
-    for(int i=0;i<self.recentPhotoIds.count;i++)
-    {
-        if([self.recentPhotoIds[i] compare: photo[FLICKR_PHOTO_ID]]==0)
-        {
-            [self.recentPhotoIds removeObject:self.recentPhotoIds[i]];
-            break;
-        }
-    }
+    [self.recentPhotoIds removeObject:photoID];
 
-    [self.recentPhotoIds addObject:photo[FLICKR_PHOTO_ID]];
+    [self.recentPhotoIds addObject:photoID];
     
     if(self.recentPhotoIds.count > RECENTLY_VIEWED_PHOTO_CAPACITY)
     {
@@ -63,10 +56,9 @@
     
     [self saveToDisk];
     
-    NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL:url];
+    NSData *imageData = [self getCachedPhoto:photoID];
     
-    [self savePhoto:photo[FLICKR_PHOTO_ID] withData:imageData];
+    [self savePhoto:photoID withData:imageData];
 }
 
 - (NSArray *) getRecentlyViewedPhotos
@@ -113,7 +105,8 @@
 {
     NSArray *urls = [self.fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
     NSURL *url=[[urls[0] URLByAppendingPathComponent:photoID] URLByAppendingPathExtension:@".jpg"];
-    return [NSData dataWithContentsOfURL:url];
+    NSData *imageData = [NSData dataWithContentsOfURL:url];
+    return imageData;
 }
 
 - (NSData *) getCachedPhoto: (NSString *)photoID
@@ -121,6 +114,7 @@
     NSData *imageData = [self loadPhoto:photoID];
     if(!imageData)
     {
+        NSLog(@"Get image data from the internet");
         NSDictionary *photo;
         for(int i=0; i<self.photos.count; i++)
         {
@@ -132,9 +126,15 @@
         }
         NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatLarge];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [NSThread sleepForTimeInterval:2.0];
         imageData = [[NSData alloc] initWithContentsOfURL:url];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
+    else
+    {
+        NSLog(@"Get image data from the disk");
+    }
+    
     return imageData;
 }
 

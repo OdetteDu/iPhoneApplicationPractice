@@ -12,7 +12,7 @@
 #define RECENTLY_VIEWED_PHOTO_KEY @"Recently_Viewed_Photo_Key"
 
 @interface RecentlyViewedPhotoSaver : NSObject
-- (void) addRecentlyViewedPhoto: (NSDictionary *)photo;
+- (void) addRecentlyViewedPhoto: (NSString *)photoID;
 - (NSArray *) getRecentlyViewedPhotos;
 - (NSData *) getCachedPhoto: (NSString *)photoID;
 
