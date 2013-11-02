@@ -11,6 +11,7 @@
 #import "FlickrFetcher.h"
 #import "ImageViewController.h"
 #import "FileSaver.h"
+#import "PhotoCategoryCDTVC.h"
 
 @interface PhotosByLastAccessCDTVC () <UISplitViewControllerDelegate>
 
@@ -71,7 +72,24 @@
     [super viewWillAppear:animated];
     if (!self.managedObjectContext)
     {
-        [self useDocument];
+        //get the managedObjectContext from superview
+        UITabBarController *tbc = self.tabBarController;
+        if(tbc)
+        {
+            NSArray *tbcs = tbc.viewControllers;
+            UIViewController *fvc = [tbcs objectAtIndex:0];
+            if([fvc isKindOfClass:[UINavigationController class]])
+            {
+                UINavigationController *nc = (UINavigationController *)fvc;
+                NSArray *ncs = nc.viewControllers;
+                UIViewController *vc=[ncs objectAtIndex:0];
+                if([vc isKindOfClass:[PhotoCategoryCDTVC class]])
+                {
+                    PhotoCategoryCDTVC *pccdtvc = (PhotoCategoryCDTVC *)vc;
+                    self.managedObjectContext = pccdtvc.managedObjectContext;
+                }
+            }
+        }
     }
     
     NSArray *photos = [self.fetchedResultsController fetchedObjects];
@@ -96,55 +114,6 @@
     }
 }
 
-- (void)useDocument
-{
-    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"Demo Document"];
-    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-        [document saveToURL:url
-           forSaveOperation:UIDocumentSaveForCreating
-          completionHandler:^(BOOL success){
-              if (success) {
-                  self.managedObjectContext = document.managedObjectContext;
-                  [self refresh];
-              }
-          }];
-    }
-    else if (document.documentState == UIDocumentStateClosed)
-    {
-        [document openWithCompletionHandler:^(BOOL success) {
-            if (success) {
-                self.managedObjectContext = document.managedObjectContext;
-            }
-        }];
-    }
-    else
-    {
-        self.managedObjectContext = document.managedObjectContext;
-    }
-}
-
-- (IBAction)refresh
-{
-    [self.refreshControl beginRefreshing];
-    dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
-    dispatch_async(fetchQ, ^{
-        NSArray *photos = [FlickrFetcher stanfordPhotos];
-        // put the photos in Core Data
-        [self.managedObjectContext performBlock:^{
-            for (NSDictionary *photo in photos)
-            {
-                [Photo photoWithFlickrInfo:photo inManagedObjectContext:self.managedObjectContext];
-            }
-            dispatch_async(dispatch_get_main_queue(),^{
-                [self.refreshControl endRefreshing];
-            });
-        }];
-    });
-}
-
 - (void) setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
@@ -152,7 +121,8 @@
     {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastAccessDate" ascending:NO]];
-        request.predicate = nil;
+        //request.predicate = nil;
+        request.predicate = [NSPredicate predicateWithFormat:@"lastAccessDate != %@", nil];
         request.fetchLimit = 5;
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                             managedObjectContext:managedObjectContext
