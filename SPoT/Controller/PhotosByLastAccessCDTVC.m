@@ -152,4 +152,9 @@
     return cell;
 }
 
+- (IBAction)refresh:(id)sender {
+    [self.refreshControl beginRefreshing];
+    [NSThread sleepForTimeInterval:0.5];
+    [self.refreshControl endRefreshing];
+}
 @end
